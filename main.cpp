@@ -1,6 +1,14 @@
 #include <iostream>
+#include "ReadFile.h"
+
+using namespace std;
 
 int main() {
-    std::cout << "Hello, World!" << std::endl;
+    string fileName;
+    cout << "Enter the number of the file:" << std::endl;
+    cin >> fileName;
+
+    ReadFile::readViagem(fileName);
+
     return 0;
 }
