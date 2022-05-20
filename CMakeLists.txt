@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.20)
-project(untitled7)
+project(DA-2.0)
 
 set(CMAKE_CXX_STANDARD 14)
 
-add_executable(untitled7 main.cpp tests/Viagem.cpp tests/Viagem.h)
+add_executable(DA-2.0 main.cpp)
