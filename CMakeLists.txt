@@ -3,4 +3,4 @@ project(untitled7)
 
 set(CMAKE_CXX_STANDARD 14)
 
-add_executable(untitled7 main.cpp tests/Viagem.cpp tests/Viagem.h)
+add_executable(untitled7 main.cpp "tests/Viagem.cpp" "tests/Viagem.h")
