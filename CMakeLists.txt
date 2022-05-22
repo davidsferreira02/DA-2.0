@@ -7,4 +7,5 @@ include_directories(Tests)
 
 add_executable(DA-2.0
         Tests/ReadFile.cpp
+        Tests/graph.cpp
         main.cpp)
