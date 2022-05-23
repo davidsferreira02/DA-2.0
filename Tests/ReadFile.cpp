@@ -21,7 +21,7 @@ Graph ReadFile::readViagem(string filename) {
     getline(in, s); //txt header
     stringstream ss(s);
     getline(ss, numNodes, ' ');
-    cout << numNodes << endl;
+    //cout << numNodes << endl;
 
     Graph graph(stoi(numNodes), true);
 
@@ -32,7 +32,7 @@ Graph ReadFile::readViagem(string filename) {
         getline(ss, capacity, ' ');
         getline(ss, duration);
 
-        cout << orig << " " << dest << " " << capacity << " " << duration << " " << endl;
+        //cout << orig << " " << dest << " " << capacity << " " << duration << " " << endl;
 
         graph.addEdge(stoi(orig), stoi(dest), stoi(capacity), stoi(duration));
         graph.addEdge(stoi(dest), stoi(orig), 0, stoi(duration));

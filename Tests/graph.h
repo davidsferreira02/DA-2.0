@@ -12,12 +12,14 @@ class Graph {
     struct Edge {
         int dest;   // Destination node
         int capacity; // An integer capacity
+        int initialCapacity;
         int duration; //
     };
 
     struct Node {
         vector<Edge> adj; // The list of outgoing edges (to adjacent nodes)
         int dist;
+        int predNode;
         int predEdge;
         bool visited;
     };
@@ -49,6 +51,7 @@ public:
      * @param dir true if the graph is directed, false otherwise
      */
     Graph(int nodes, bool dir = false);
+    int getSize();
     /*!
      * Add edge from source to destination with a certain capacity
      *
@@ -80,6 +83,11 @@ public:
      * @return Vector with the stops between the two nodes
      */
     vector<int> dijkstraPath(int sNode, int endNode);
+    int getMaxFlow(vector<int> path, int start);
+    int getOtherEdge(int srcNode, int srcEdge);
+    void FordFulkerson(int start, int end);
+    Graph getFulkersonSolution();
+    void printPaths(int start, int end);
 };
 
 #endif
