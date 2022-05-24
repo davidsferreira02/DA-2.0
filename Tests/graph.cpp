@@ -70,6 +70,18 @@ vector<int> Graph::backtrace(int start, int end) {
     return path;
 }
 
+vector<int> Graph::backtraceNode(int start, int end) {
+    if(nodes[end].predNode== -1){return {};}
+    vector<int> path = {};
+    int curNode = end;
+    while (curNode != start){
+        path.insert(path.begin(),curNode);
+        curNode = nodes[curNode].predNode;
+    }
+    path.insert(path.begin(),curNode);
+    return path;
+}
+
 vector<int> Graph::bfsstops(int v, int fv) {
     if(v == fv){return {v};}
 
@@ -196,6 +208,12 @@ void Graph::pathMaximumCapacity(int start, int end){
             }
         }
     }
+
+    cout << "Capacity: " << nodes[end].capacity << endl;
+    for(auto node : backtraceNode(start, end)){
+        cout << node << " ";
+    }
+
 }
 
 vector<int> Graph::dijkstraPath(int sNode, int endNode) {

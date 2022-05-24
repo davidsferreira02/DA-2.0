@@ -84,6 +84,7 @@ public:
      * @param endNode End node
      * @return Vector with the stops between the two nodes
      */
+    vector<int> backtraceNode(int start, int end);
     vector<int> dijkstraPath(int sNode, int endNode);
     int getMaxFlow(vector<int> path, int start);
     int getOtherEdge(int srcNode, int srcEdge);
