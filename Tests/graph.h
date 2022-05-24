@@ -2,6 +2,7 @@
 #define _GRAPH_H_
 
 #include "minHeap.h"
+#include "maxHeap.h"
 #include <vector>
 #include <list>
 #include <iostream>
@@ -19,6 +20,7 @@ class Graph {
     struct Node {
         vector<Edge> adj; // The list of outgoing edges (to adjacent nodes)
         int dist;
+        int capacity; //used in path of maximum capacity
         int predNode;
         int predEdge;
         bool visited;
@@ -88,6 +90,7 @@ public:
     void FordFulkerson(int start, int end);
     Graph getFulkersonSolution();
     void printPaths(int start, int end);
+    void pathMaximumCapacity(int start, int end);
 };
 
 #endif
