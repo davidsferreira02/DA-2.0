@@ -1,8 +1,12 @@
 #include <iostream>
+#include "ReadFile.h"
+
+using namespace std;
 
 #define  NMAX 10000
 
 int main() {
+
     int localPartida[NMAX];
     int localChegada[NMAX];
     int capacidade[NMAX];
@@ -99,6 +103,13 @@ int main() {
         fscanf(file10, "%d ", &capacidade[i]);
         fscanf(file10, "%d ", &duracao[i]);
     }
+
+    string fileName;
+    cout << "Enter the number of the file:" << std::endl;
+    cin >> fileName;
+
+    ReadFile::readViagem(fileName);
+
 
     return 0;
 }
