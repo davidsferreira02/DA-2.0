@@ -121,6 +121,7 @@ int Graph::getOtherEdge(int srcNode, int srcEdge) {
             edgeNum--;
             if (edgeNum == 0) return i;
         }
+    return -1;
 }
 
 Graph Graph::getFulkersonSolution() {
@@ -138,9 +139,10 @@ Graph Graph::getFulkersonSolution() {
 
 void Graph::printPaths(int start, int end) {
     vector<int> path;
-    int flow;
+    int flow, sumflow = 0;
     while (!(path = bfsstops(start, end)).empty()) {
         flow = getMaxFlow(path, start);
+        sumflow += flow;
         cout << "For flow of " << to_string(flow);
         if (flow == 1) cout << " person: \n";
         else cout << " people: \n";
@@ -152,6 +154,7 @@ void Graph::printPaths(int start, int end) {
         }
         cout << to_string(end) << "\n";
     }
+    cout << "Maximum capacity of the group: " << to_string(sumflow) << endl;
 }
 
 void Graph::FordFulkerson(int start, int end) {
