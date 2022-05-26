@@ -70,7 +70,7 @@ vector<int> Graph::backtrace(int start, int end) {
     return path;
 }
 
-vector<int> Graph::bfsstops(int v, int fv) {
+vector<int> Graph::bfs(int v, int fv) {
     if(v == fv){return {v};}
 
     resetNodePathingValues();
@@ -97,7 +97,7 @@ vector<int> Graph::bfsstops(int v, int fv) {
     return {};
 }
 
-int Graph::getMaxFlow(vector<int> path, int start) {
+int Graph::getMaxFlowForPath(vector<int> path, int start) {
     int curNode = start, flow = INT32_MAX;
     Edge curEdge;
     for( auto e: path) {
@@ -124,24 +124,54 @@ int Graph::getOtherEdge(int srcNode, int srcEdge) {
     return -1;
 }
 
-Graph Graph::getFulkersonSolution() {
-    Graph g(n, hasDir);
+Graph* Graph::getFulkersonSolution() {
+    Graph* g = new Graph(n, hasDir);
 
     for (int i = 1; i <= n; i++) {
         for (auto e: nodes[i].adj) {
             if (e.initialCapacity == 0 && e.capacity != 0) {
-                g.addEdge(e.dest, i, e.capacity, e.duration);
+                g->addEdge(e.dest, i, e.capacity, e.duration);
             }
         }
     }
     return g;
 }
+/*
+int Graph::getDurationForPath(vector<int> path, int start) {
+    int curNode = start, duration = 0;
+    Edge curEdge;
+    for( auto e: path) {
+        curEdge = nodes[curNode].adj[e];
+        duration += curEdge.duration;
+        curNode = curEdge.dest;
+    }
+    return duration;
+}
+
+Paths* Graph::getPossiblePaths(int start, int end) {
+    vector<int> path;
+    int flow, duration, sumFlow = 0, maxDuration = 0;
+    while (!(path = bfs(start, end)).empty()) {
+        flow = getMaxFlowForPath(path, start);
+        //duration = getDurationForPath(path, start);
+        sumFlow += flow;
+        if (duration > maxDuration) maxDuration = duration;
+        int curNode = start;
+        for( auto e: path) {
+            cout << to_string(curNode) << " ";
+            nodes[curNode].adj[e].capacity -= flow;
+            curNode = nodes[curNode].adj[e].dest;
+        }
+        cout << to_string(end) << "\n";
+    }
+}
+*/
 
 void Graph::printPaths(int start, int end) {
     vector<int> path;
     int flow, sumflow = 0;
-    while (!(path = bfsstops(start, end)).empty()) {
-        flow = getMaxFlow(path, start);
+    while (!(path = bfs(start, end)).empty()) {
+        flow = getMaxFlowForPath(path, start);
         sumflow += flow;
         cout << "For flow of " << to_string(flow);
         if (flow == 1) cout << " person: \n";
@@ -160,8 +190,8 @@ void Graph::printPaths(int start, int end) {
 void Graph::FordFulkerson(int start, int end) {
     vector<int> path;
     int flow;
-    while (!(path = bfsstops(start, end)).empty()) {
-        flow = getMaxFlow(path, start);
+    while (!(path = bfs(start, end)).empty()) {
+        flow = getMaxFlowForPath(path, start);
         int curNode = start;
         Edge curEdge;
         for( auto e: path) {
@@ -171,7 +201,6 @@ void Graph::FordFulkerson(int start, int end) {
             curNode = nodes[curNode].adj[e].dest;
         }
     }
-    getFulkersonSolution().printPaths(start,end);
 }
 
 vector<int> Graph::dijkstraPath(int sNode, int endNode) {

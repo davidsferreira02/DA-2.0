@@ -5,6 +5,7 @@
 #include <vector>
 #include <list>
 #include <iostream>
+#include "Paths.h"
 
 using namespace std;
 
@@ -73,7 +74,7 @@ public:
      * @param fv End node
      * @return Vector with the stops between the two nodes
      */
-    vector<int> bfsstops(int v, int fv);
+    vector<int> bfs(int v, int fv);
     /*!
      * Finds the minimum path using the dijkstra algorithm
      * Big 0 : O(|E| log|V|) (where V is the number of nodes and E the number of edges)
@@ -83,10 +84,11 @@ public:
      * @return Vector with the stops between the two nodes
      */
     vector<int> dijkstraPath(int sNode, int endNode);
-    int getMaxFlow(vector<int> path, int start);
+    int getMaxFlowForPath(vector<int> path, int start);
     int getOtherEdge(int srcNode, int srcEdge);
     void FordFulkerson(int start, int end);
-    Graph getFulkersonSolution();
+    Graph* getFulkersonSolution();
+    //Paths* getPossiblePaths(int start, int end);
     void printPaths(int start, int end);
 };
 
