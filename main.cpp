@@ -9,7 +9,7 @@ int main() {
     for(int i = 1; i < 12; i++) {
         cout << "\nFile " << to_string(i) << "\n";
         Graph g = ReadFile::readViagem(to_string(i));
-        Cenarios::cenario2_3(&g);
+        Cenarios::cenario2_4(&g);
     }
 
     return 0;

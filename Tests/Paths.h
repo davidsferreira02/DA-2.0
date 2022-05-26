@@ -21,11 +21,11 @@ class Paths {
     int maxDuration;
 public:
     Paths();
-    void addPath()
+    //void addPath()
 };
 
 
-Paths::Paths() : maxFlow(0), maxDuration(0) {}
+//Paths::Paths() : maxFlow(0), maxDuration(0) {}
 
 
 #endif //DA_2_0_PATHS_H

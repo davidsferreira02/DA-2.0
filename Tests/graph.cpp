@@ -228,3 +228,87 @@ vector<int> Graph::dijkstraPath(int sNode, int endNode) {
 
     return backtrace(sNode, endNode);
 }
+
+void Graph::addOppositeEdges() {
+    for (int i = 1; i <= n; i++) {
+        for (auto e : nodes[i].adj) {
+            addEdge(e.dest,i,0,e.duration);
+        }
+    }
+}
+
+vector<int> Graph::resetEarliestStartValues() {
+    for (int i=1; i<=n; i++) {
+        nodes.at(i).earliestStart = 0;
+        nodes.at(i).GrauE = 0;
+        nodes.at(i).predNode = -1;
+        nodes.at(i).predEdge = -1;
+
+    }
+    for (int i=1; i<=n; i++)
+        for (auto e: nodes.at(i).adj)
+            nodes.at(e.dest).GrauE += 1;
+
+    vector<int> S = {};
+    for (int i=1; i<=n; i++)
+        if (nodes.at(i).GrauE == 0) S.push_back(i);
+
+    return S;
+}
+
+int Graph::earliestStart() {
+    vector<int> S = resetEarliestStartValues();
+    int durMin = -1, vf = -1;
+    while (!S.empty()) {
+        int v = S.back();
+        S.pop_back();
+        if (durMin < nodes[v].earliestStart) {
+            durMin = nodes[v].earliestStart;
+            vf = v;
+        }
+        for (auto e : nodes[v].adj) {
+            if (nodes[e.dest].earliestStart < nodes[v].earliestStart + e.duration) {
+                nodes[e.dest].earliestStart = nodes[v].earliestStart + e.duration;
+                nodes[e.dest].predNode = v;     //falta ir buscar a predEdge
+            }
+            nodes[e.dest].GrauE -= 1;
+            if (nodes[e.dest].GrauE == 0) S.push_back(e.dest);
+        }
+    }
+    return nodes[n].earliestStart;
+}
+
+vector<int> Graph::resetLatestFinishValues() {
+    earliestStart();
+
+    for (int i=1; i<=n; i++) {
+        nodes.at(i).latestFinish=nodes.at(n).earliestStart;
+        nodes.at(i).GrauS = 0;
+    }
+    for (int i=1; i<=n; i++)
+        for (auto e: nodes.at(i).adj)
+            nodes.at(e.dest).GrauS += 1;
+
+    vector<int> S = {};
+    for (int i=1; i<=n; i++)
+        if (nodes.at(i).GrauS == 0) S.push_back(i);
+
+    addOppositeEdges();
+    return S;
+}
+
+int Graph::latestFinish() {
+    vector<int> S = resetLatestFinishValues();
+
+    while (!S.empty()) {
+        int v = S.back(); S.pop_back();
+        for (auto e : nodes[v].adj){
+            if (e.initialCapacity != 0) continue;
+            if (nodes[e.dest].latestFinish > nodes[v].latestFinish - e.duration)
+                nodes[e.dest].latestFinish = nodes[v].latestFinish - e.duration;
+            nodes[e.dest].GrauS -= 1;
+            if (nodes[e.dest].GrauS == 0) S.push_back(e.dest);
+        }
+    }
+    return nodes[n].latestFinish;
+}

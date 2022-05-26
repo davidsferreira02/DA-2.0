@@ -23,6 +23,10 @@ class Graph {
         int predNode;
         int predEdge;
         bool visited;
+        int earliestStart;
+        int GrauE;
+        int latestFinish;
+        int GrauS;
     };
 
     int n;              // Graph size (vertices are numbered from 1 to n)
@@ -90,6 +94,11 @@ public:
     Graph* getFulkersonSolution();
     //Paths* getPossiblePaths(int start, int end);
     void printPaths(int start, int end);
+    void addOppositeEdges();
+    vector<int> resetEarliestStartValues();
+    int earliestStart();
+    vector<int> resetLatestFinishValues();
+    int latestFinish();
 };
 
 #endif
