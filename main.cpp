@@ -7,7 +7,7 @@ using namespace std;
 int main() {
     cout << "\nFile " << to_string(12) << "\n";
     Graph g = ReadFile::readViagem(to_string(12));
-    Cenarios::cenario2_5(&g);
+    Cenarios::cenario2_1(&g);
     return 0;
     /*
     for(int i = 1; i < 12; i++) {

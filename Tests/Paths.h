@@ -4,28 +4,27 @@
 #include <fstream>
 #include <string>
 #include <sstream>
+#include <utility>
 #include "graph.h"
 
 using namespace std;
 
 class Paths {
     struct Path {
-        vector<pair<int,int>> nodesWNextEdge;
+        vector<int> nodes;
         int flow;
-        int ocupiedFlow;
-        int duration;
+        int freeFlow;
     };
 
     vector<Path> paths;
     int maxFlow;
-    int maxDuration;
+    int occupied;
 public:
     Paths();
-    //void addPath()
+    void addPath(vector<int> nodes, int flow);
+    int getMaxFlow();
+    void fitNPeople(int n);
+    void addNPeople(int n);
 };
-
-
-//Paths::Paths() : maxFlow(0), maxDuration(0) {}
-
 
 #endif //DA_2_0_PATHS_H

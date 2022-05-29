@@ -9,7 +9,12 @@ void Cenarios::cenario1_2(Graph* g) {
 }
 
 void Cenarios::cenario2_1(Graph* g) {
-
+    int n = 3;
+    g->FordFulkerson(1,g->getSize());
+    Graph* solution = g->getFulkersonSolution();
+    Paths* paths = solution->getPossiblePaths();
+    paths->fitNPeople(n);
+    //solution->printPaths(1,g->getSize());
 
 }
 

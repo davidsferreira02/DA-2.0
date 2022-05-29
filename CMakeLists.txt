@@ -6,7 +6,8 @@ set(CMAKE_CXX_STANDARD 14)
 include_directories(Tests)
 
 add_executable(DA-2.0
+        Tests/graph.cpp
+        Tests/Paths.cpp
         Tests/ReadFile.cpp
         Tests/Cenarios.cpp
-        Tests/graph.cpp
         main.cpp)

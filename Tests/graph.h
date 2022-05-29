@@ -9,6 +9,8 @@
 
 using namespace std;
 
+class Paths;
+
 class Graph {
     struct Edge {
         int dest;   // Destination node
@@ -92,7 +94,7 @@ public:
     int getOtherEdge(int srcNode, int srcEdge);
     void FordFulkerson(int start, int end);
     Graph* getFulkersonSolution();
-    //Paths* getPossiblePaths(int start, int end);
+    Paths* getPossiblePaths();
     void printPaths(int start, int end);
     void addOppositeEdges();
     vector<int> resetEarliestStartValues();

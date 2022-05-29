@@ -136,36 +136,25 @@ Graph* Graph::getFulkersonSolution() {
     }
     return g;
 }
-/*
-int Graph::getDurationForPath(vector<int> path, int start) {
-    int curNode = start, duration = 0;
-    Edge curEdge;
-    for( auto e: path) {
-        curEdge = nodes[curNode].adj[e];
-        duration += curEdge.duration;
-        curNode = curEdge.dest;
-    }
-    return duration;
-}
 
-Paths* Graph::getPossiblePaths(int start, int end) {
-    vector<int> path;
-    int flow, duration, sumFlow = 0, maxDuration = 0;
-    while (!(path = bfs(start, end)).empty()) {
-        flow = getMaxFlowForPath(path, start);
-        //duration = getDurationForPath(path, start);
-        sumFlow += flow;
-        if (duration > maxDuration) maxDuration = duration;
-        int curNode = start;
+Paths* Graph::getPossiblePaths() {
+    Paths* paths = new Paths();
+    vector<int> path, nodesPath;
+    int flow;
+    while (!(path = bfs(1, n)).empty()) {
+        nodesPath = {};
+        flow = getMaxFlowForPath(path, 1);
+        int curNode = 1;
         for( auto e: path) {
-            cout << to_string(curNode) << " ";
+            nodesPath.push_back(curNode);
             nodes[curNode].adj[e].capacity -= flow;
             curNode = nodes[curNode].adj[e].dest;
         }
-        cout << to_string(end) << "\n";
+        nodesPath.push_back(n);
+        paths->addPath(nodesPath,flow);
     }
+    return paths;
 }
-*/
 
 void Graph::printPaths(int start, int end) {
     vector<int> path;
