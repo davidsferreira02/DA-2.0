@@ -319,3 +319,25 @@ int Graph::latestFinish() {
     }
     return nodes[n].latestFinish;
 }
+
+void Graph::showWaitingTimes() {
+    int wTime, maxWaitTime = 0;
+    cout << "After going from node [n] to node [w] there is a waiting time of [t] at [w] to continue." << endl;
+    cout << "[n] -> [w] : [t]" << endl;
+    for (int i = 1; i < n; i++) {
+        for (auto e : nodes[i].adj) {
+            wTime = nodes[e.dest].earliestStart - nodes[i].earliestStart - e.duration;
+            if (wTime == 0) continue;
+            if (wTime > maxWaitTime) maxWaitTime = wTime;
+            cout << i << "->" << e.dest << ":" << wTime << endl;
+        }
+    }
+    cout << "\nThe maximum waiting time is " << maxWaitTime << " at nodes: ";
+    for (int i = 1; i < n; i++) {
+        for (auto e : nodes[i].adj) {
+            wTime = nodes[e.dest].earliestStart - nodes[i].earliestStart - e.duration;
+            if (wTime == maxWaitTime) cout << e.dest << " ";
+        }
+    }
+    cout << endl;
+}

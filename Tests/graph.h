@@ -99,6 +99,7 @@ public:
     int earliestStart();
     vector<int> resetLatestFinishValues();
     int latestFinish();
+    void showWaitingTimes();
 };
 
 #endif
