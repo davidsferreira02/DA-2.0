@@ -232,7 +232,8 @@ vector<int> Graph::dijkstraPath(int sNode, int endNode) {
 void Graph::addOppositeEdges() {
     for (int i = 1; i <= n; i++) {
         for (auto e : nodes[i].adj) {
-            addEdge(e.dest,i,0,e.duration);
+            if (e.capacity != -1)
+                addEdge(e.dest,i,-1,e.duration);
         }
     }
 }
@@ -287,7 +288,7 @@ vector<int> Graph::resetLatestFinishValues() {
     }
     for (int i=1; i<=n; i++)
         for (auto e: nodes.at(i).adj)
-            nodes.at(e.dest).GrauS += 1;
+            nodes.at(i).GrauS += 1;
 
     vector<int> S = {};
     for (int i=1; i<=n; i++)
@@ -302,13 +303,19 @@ int Graph::latestFinish() {
 
     while (!S.empty()) {
         int v = S.back(); S.pop_back();
+        int i = -1;
         for (auto e : nodes[v].adj){
-            if (e.initialCapacity != 0) continue;
+            i++;
+            if (e.initialCapacity != -1) continue;
             if (nodes[e.dest].latestFinish > nodes[v].latestFinish - e.duration)
                 nodes[e.dest].latestFinish = nodes[v].latestFinish - e.duration;
             nodes[e.dest].GrauS -= 1;
             if (nodes[e.dest].GrauS == 0) S.push_back(e.dest);
         }
+    }
+
+    for (int i = 1; i <= n; i++) {
+        cout  << i << ": " << nodes[i].earliestStart << " / " << nodes[i].latestFinish << endl;
     }
     return nodes[n].latestFinish;
 }

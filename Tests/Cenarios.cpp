@@ -26,8 +26,8 @@ void Cenarios::cenario2_3(Graph* g) {
 void Cenarios::cenario2_4(Graph* g) {
     g->FordFulkerson(1,g->getSize());
     Graph* g2 = g->getFulkersonSolution();
-
-    cout << "Latest finish at " << g2->latestFinish();
+    g2->latestFinish();
+    //cout << "Latest finish at " << g2->latestFinish();
 }
 
 void Cenarios::cenario2_5(Graph* g) {
