@@ -1,7 +1,7 @@
 #include "Cenarios.h"
 
 void Cenarios::cenario1_1(Graph* g) {
-
+    g->pathMaximumCapacity(1,g->getSize());
 }
 
 void Cenarios::cenario1_2(Graph* g) {
