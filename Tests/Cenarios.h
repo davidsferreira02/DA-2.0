@@ -19,5 +19,4 @@ public:
     static void cenario2_5(Graph* g);
 };
 
-
 #endif //DA_2_0_CENARIOS_H

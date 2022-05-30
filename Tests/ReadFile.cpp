@@ -4,26 +4,26 @@
 
 #include "ReadFile.h"
 
-Graph<int> ReadFile::readViagem(string filename) {
-    Graph<int> graph;
-    ifstream in;
+Graph* ReadFile::readViagem(string filename) {
 
-    in.open("../Tests/Data/" + filename);
+    ifstream in;
+    if (stoi(filename) < 10) filename = '0' + filename;
+
+    in.open("../Tests/Data/in" + filename + ".txt");
 
     if(!in.is_open()){
         cerr << "Unable to open file" << endl;
     }
 
-    string s, numVertex, orig, dest, capacity, duration;
+    string s, numNodes, orig, dest, capacity, duration;
 
 
     getline(in, s); //txt header
     stringstream ss(s);
-    getline(ss, numVertex, ' ');
-    cout << numVertex << endl;
-    for(int i = 1; i <= stoi(numVertex); i++){
-        graph.addVertex(i);
-    }
+    getline(ss, numNodes, ' ');
+    //cout << numNodes << endl;
+
+    Graph* graph = new Graph(stoi(numNodes), true);
 
     while(getline(in, s)){
         stringstream ss(s);
@@ -32,7 +32,11 @@ Graph<int> ReadFile::readViagem(string filename) {
         getline(ss, capacity, ' ');
         getline(ss, duration);
 
-        cout << orig << " " << dest << " " << capacity << " " << duration << " " << endl;
+        //cout << orig << " " << dest << " " << capacity << " " << duration << " " << endl;
+
+        graph->addEdge(stoi(orig), stoi(dest), stoi(capacity), stoi(duration));
+        graph->addEdge(stoi(dest), stoi(orig), 0, stoi(duration));
     }
+
     return graph;
 }
