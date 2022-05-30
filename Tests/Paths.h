@@ -25,6 +25,7 @@ public:
     int getMaxFlow();
     void fitNPeople(int n);
     void addNPeople(int n);
+    void fitNPeople(int n, bool add);
 };
 
 #endif //DA_2_0_PATHS_H

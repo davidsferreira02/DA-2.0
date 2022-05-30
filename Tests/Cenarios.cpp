@@ -13,7 +13,9 @@ void Cenarios::cenario2_1(Graph* g) {
     g->FordFulkerson(1,g->getSize());
     Graph* solution = g->getFulkersonSolution();
     Paths* paths = solution->getPossiblePaths();
-    paths->fitNPeople(n);
+    paths->fitNPeople(n, false);
+
+    paths->fitNPeople(2, true);
     //solution->printPaths(1,g->getSize());
 
 }
