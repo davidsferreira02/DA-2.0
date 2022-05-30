@@ -21,41 +21,51 @@ int main() {
 
     return 0;
 */
-    string fileName;
-    cout << "Enter the number of the file:" << std::endl;
-    cin >> fileName;
-    Graph* g = ReadFile::readViagem(fileName);
+    string fileName, scenario;
+    char c;
 
-    string scenario;
-    cout << "Choose one  scenario" << endl;
-    cin >> scenario;
+    while (true) {
+        cout << "Choose one of the following scenarios:" << endl;
+        cout << "1.1 / 1.2 / 2.1 / 2.3 / 2.4 / 2.5" << endl;
+        cout << "(Scenario 2.2 included in 2.1)" << endl;
+        cin >> scenario;
 
+        cout << "Enter the number of the file to be tested:" << endl;
+        cin >> fileName;
+        Graph* g = ReadFile::readViagem(fileName);
 
-    if (scenario == "1_1") {
-        Cenarios::cenario1_1(g);
-    } else if (scenario == "1_2") {
-        Cenarios::cenario1_2(g);
+        if (scenario == "1.1") {
+            Cenarios::cenario1_1(g);
+        } else if (scenario == "1.2") {
+            Cenarios::cenario1_2(g);
+        }
+        else if (scenario == "2.1") {
+            Cenarios::cenario2_1( g);
+        }
+        else if (scenario == "2.3") {
+            Cenarios::cenario2_3(g);
+        }
+        else if (scenario == "2.4") {
+            Cenarios::cenario2_4(g);
+        }
+        else if (scenario == "2.5") {
+            Cenarios::cenario2_5(g);
+        }
+        else {
+            cout << "Invalid scenario" << endl;
+            cin.clear();
+            cin.ignore(1000, '\n');
+        }
+        while (true) {
+            cout << "\nNew cenario? (y/n)" << endl;
+            cin >> c;
+            if (c == 'n') {
+                return 0;
+            } if (c == 'y') break;
+            cout << "Invalid input\n";
+        }
     }
-    else if (scenario == "2_1") {
-        Cenarios::cenario2_1( g);
-    }
-    else if (scenario == "2_2") {
-        Cenarios::cenario2_2(g);
-    }
-    else if (scenario == "2_3") {
-        Cenarios::cenario2_3(g);
-    }
-    else if (scenario == "2_4") {
-        Cenarios::cenario2_4(g);
-    }
-    else if (scenario == "2_5") {
-        Cenarios::cenario2_5(g);
-    }
-    else {
-        cout << "Invalid scenario" << endl;
-        cin.clear();
-        cin.ignore(1000, '\n');
-    }
+
 
     /*
      switch (scenario) {

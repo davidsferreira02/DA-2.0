@@ -63,31 +63,35 @@ void Paths::addNPeople(int n) {
     }
 }*/
 
-void Paths::fitNPeople(int n, bool add) {
+bool Paths::fitNPeople(int n, bool add) {
     if (n > (maxFlow - occupied)) {
         cout << "Not enough capacity for this number of people" << endl;
-        return;
+        return true;
     }
     auto it = paths.begin();
     if (add) {
         while (it->freeFlow == 0) it++;
         cout << "Add these paths to the previous answer:\n";
     }
+    int curN;
     while (n != 0) {
+        curN = 0;
         if (n <= (*it).freeFlow) {
+            curN = n;
             (*it).freeFlow -= n;
             n = 0;
-            occupied += n;
         } else {
+            curN = (*it).freeFlow;
             (*it).freeFlow = 0;
-            n -= (*it).flow;
-            occupied += (*it).flow;
+            n -= curN;
         }
-        cout << "For flow of " << to_string((*it).flow - (*it).freeFlow);
-        if (n == 1) cout << " person: \n";
+        occupied += curN;
+        cout << "For flow of " << to_string(curN);
+        if (curN == 1) cout << " person: \n";
         else cout << " people: \n";
         for (auto node : (*it).nodes) cout << node << " ";
         cout << endl;
         it++;
     }
+    return false;
 }

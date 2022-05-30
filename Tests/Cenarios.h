@@ -13,7 +13,6 @@ public:
     static void cenario1_1(Graph* g);
     static void cenario1_2(Graph* g);
     static void cenario2_1(Graph* g);
-    static void cenario2_2(Graph* g);
     static void cenario2_3(Graph* g);
     static void cenario2_4(Graph* g);
     static void cenario2_5(Graph* g);
