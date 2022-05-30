@@ -2,6 +2,7 @@
 #define _GRAPH_H_
 
 #include "minHeap.h"
+#include "maxHeap.h"
 #include <vector>
 #include <list>
 #include <iostream>
@@ -22,6 +23,7 @@ class Graph {
     struct Node {
         vector<Edge> adj; // The list of outgoing edges (to adjacent nodes)
         int dist;
+        int capacity; //used in path of maximum capacity
         int predNode;
         int predEdge;
         bool visited;
@@ -89,6 +91,7 @@ public:
      * @param endNode End node
      * @return Vector with the stops between the two nodes
      */
+    vector<int> backtraceNode(int start, int end);
     vector<int> dijkstraPath(int sNode, int endNode);
     int getMaxFlowForPath(vector<int> path, int start);
     int getOtherEdge(int srcNode, int srcEdge);
@@ -102,6 +105,7 @@ public:
     vector<int> resetLatestFinishValues();
     int latestFinish();
     void showWaitingTimes();
+    void pathMaximumCapacity(int start, int end);
 };
 
 #endif
