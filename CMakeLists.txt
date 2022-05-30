@@ -8,4 +8,4 @@ include_directories(Tests)
 add_executable(DA-2.0
         Tests/ReadFile.cpp
         Tests/graph.cpp
-        main.cpp)
+        main.cpp Tests/Cenario1_2.cpp Tests/Cenarip1_2.h)

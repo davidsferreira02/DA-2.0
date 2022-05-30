@@ -35,29 +35,6 @@ void Graph::resetNodePathingValues() {
     }
 }
 
-/*
-vector<int> Graph::backtrace(int start, int end) {
-    if(nodes[end].predEdge == -1){return {};}
-    vector<int> path = {end};
-    int prevNode,edgeIndex,edgeNum = 0, curNode = end;
-    while (curNode != start){
-        prevNode = nodes[curNode].adj[nodes[curNode].predEdge].dest;
-        for(int i = 0; i < nodes[curNode].adj.size(); i++)
-            if (nodes[curNode].adj[i].dest == prevNode) {
-                edgeNum++;
-                if (i == nodes[curNode].predEdge) break;
-            }
-        for(int i = 0; i < nodes[prevNode].adj.size(); i++)
-            if (nodes[prevNode].adj[i].dest == curNode) {
-                edgeNum--;
-                if (edgeNum == 0) edgeIndex = i;
-            }
-        path.insert(path.begin(),edgeIndex);
-        curNode = prevNode;
-    }
-    return path;
-}
-*/
 
 vector<int> Graph::backtrace(int start, int end) {
     if(nodes[end].predNode== -1){return {};}
