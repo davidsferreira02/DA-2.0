@@ -1,114 +1,104 @@
 #include <iostream>
-#include "ReadFile.h"
+
+#include "Tests/ReadFile.h"
+#include "Tests/Cenarios.h"
+#include "Tests/graph.h"
 
 using namespace std;
 
 #define  NMAX 10000
 
 int main() {
+    /*
+    cout << "\nFile " << to_string(12) << "\n";
+    Graph g = ReadFile::readViagem(to_string(12));
+    Cenarios::cenario2_1(&g);
+    return 0;
 
-    int localPartida[NMAX];
-    int localChegada[NMAX];
-    int capacidade[NMAX];
-    int nos = 0;
-    int duracao[NMAX];
-    int autocarros = 0;
-    FILE *file1 = fopen("tests/Data/Tests/Tests/int01.txt", "r");
-    fscanf(file1, "%d ", &nos);
-    fscanf(file1, "%d\n", &autocarros);
-    for (int i = 0; i < autocarros; i++) {
-        fscanf(file1, "%d ", &localPartida[i]);
-        fscanf(file1, "%d ", &localChegada[i]);
-        fscanf(file1, "%d ", &capacidade[i]);
-        fscanf(file1, "%d ", &duracao[i]);
-    }
-    FILE *file2 = fopen("tests/Data/Tests/Tests/int02.txt", "r");
-    fscanf(file2, "%d ", &nos);
-    fscanf(file2, "%d\n", &autocarros);
-    for (int i = 0; i < autocarros; i++) {
-        fscanf(file2, "%d ", &localPartida[i]);
-        fscanf(file2, "%d ", &localChegada[i]);
-        fscanf(file2, "%d ", &capacidade[i]);
-        fscanf(file2, "%d ", &duracao[i]);
-    }
-    FILE *file3 = fopen("tests/Data/Tests/Tests/int03.txt", "r");
-    fscanf(file3, "%d ", &nos);
-    fscanf(file3, "%d\n", &autocarros);
-    for (int i = 0; i < autocarros; i++) {
-        fscanf(file3, "%d ", &localPartida[i]);
-        fscanf(file3, "%d ", &localChegada[i]);
-        fscanf(file3, "%d ", &capacidade[i]);
-        fscanf(file3, "%d ", &duracao[i]);
-    }
-    FILE *file4 = fopen("tests/Data/Tests/Tests/int04.txt", "r");
-    fscanf(file4, "%d ", &nos);
-    fscanf(file4, "%d\n", &autocarros);
-    for (int i = 0; i < autocarros; i++) {
-        fscanf(file4, "%d ", &localPartida[i]);
-        fscanf(file4, "%d ", &localChegada[i]);
-        fscanf(file4, "%d ", &capacidade[i]);
-        fscanf(file4, "%d ", &duracao[i]);
-    }
-    FILE *file5 = fopen("tests/Data/Tests/Tests/int05.txt", "r");
-    fscanf(file5, "%d ", &nos);
-    fscanf(file5, "%d\n", &autocarros);
-    for (int i = 0; i < autocarros; i++) {
-        fscanf(file5, "%d ", &localPartida[i]);
-        fscanf(file5, "%d ", &localChegada[i]);
-        fscanf(file5, "%d ", &capacidade[i]);
-        fscanf(file5, "%d ", &duracao[i]);
-    }
-    FILE *file6 = fopen("tests/Data/Tests/Tests/int06.txt", "r");
-    fscanf(file6, "%d ", &nos);
-    fscanf(file6, "%d\n", &autocarros);
-    for (int i = 0; i < autocarros; i++) {
-        fscanf(file6, "%d ", &localPartida[i]);
-        fscanf(file6, "%d ", &localChegada[i]);
-        fscanf(file6, "%d ", &capacidade[i]);
-        fscanf(file6, "%d ", &duracao[i]);
-    }
-    FILE *file7 = fopen("tests/Data/Tests/Tests/int07.txt", "r");
-    fscanf(file7, "%d ", &nos);
-    fscanf(file7, "%d\n", &autocarros);
-    for (int i = 0; i < autocarros; i++) {
-        fscanf(file7, "%d ", &localPartida[i]);
-        fscanf(file7, "%d ", &localChegada[i]);
-        fscanf(file7, "%d ", &capacidade[i]);
-        fscanf(file7, "%d ", &duracao[i]);
-    }
-    FILE *file8 = fopen("tests/Data/Tests/Tests/int08.txt", "r");
-    fscanf(file8, "%d ", &nos);
-    fscanf(file8, "%d\n", &autocarros);
-    for (int i = 0; i < autocarros; i++) {
-        fscanf(file8, "%d ", &localPartida[i]);
-        fscanf(file8, "%d ", &localChegada[i]);
-        fscanf(file8, "%d ", &capacidade[i]);
-        fscanf(file8, "%d ", &duracao[i]);
-    }
-    FILE *file9 = fopen("tests/Data/Tests/Tests/int09.txt", "r");
-    fscanf(file9, "%d ", &nos);
-    fscanf(file9, "%d\n", &autocarros);
-    for (int i = 0; i < autocarros; i++) {
-        fscanf(file9, "%d ", &localPartida[i]);
-        fscanf(file9, "%d ", &localChegada[i]);
-        fscanf(file9, "%d ", &capacidade[i]);
-        fscanf(file9, "%d ", &duracao[i]);
-    }
-    FILE *file10 = fopen("tests/Data/Tests/Tests/int10.txt", "r");
-    fscanf(file10, "%d ", &nos);
-    fscanf(file10, "%d\n", &autocarros);
-    for (int i = 0; i < autocarros; i++) {
-        fscanf(file10, "%d ", &localPartida[i]);
-        fscanf(file10, "%d ", &localChegada[i]);
-        fscanf(file10, "%d ", &capacidade[i]);
-        fscanf(file10, "%d ", &duracao[i]);
+    for(int i = 1; i < 12; i++) {
+        cout << "\nFile " << to_string(i) << "\n";
+        Graph g = ReadFile::readViagem(to_string(i));
+        Cenarios::cenario2_4(&g);
     }
 
-    string fileName;
-    cout << "Enter the number of the file:" << std::endl;
-    cin >> fileName;
+    return 0;
+*/
+    string fileName, scenario;
+    char c;
 
-    ReadFile::readViagem(fileName);
+    while (true) {
+        cout << "Choose one of the following scenarios:" << endl;
+        cout << "1.1 / 1.2 / 2.1 / 2.3 / 2.4 / 2.5" << endl;
+        cout << "(Scenario 2.2 included in 2.1)" << endl;
+        cin >> scenario;
+
+        cout << "Enter the number of the file to be tested:" << endl;
+        cin >> fileName;
+        Graph* g = ReadFile::readViagem(fileName);
+
+        if (scenario == "1.1") {
+            Cenarios::cenario1_1(g);
+        } else if (scenario == "1.2") {
+            Cenarios::cenario1_2(g);
+        }
+        else if (scenario == "2.1") {
+            Cenarios::cenario2_1( g);
+        }
+        else if (scenario == "2.3") {
+            Cenarios::cenario2_3(g);
+        }
+        else if (scenario == "2.4") {
+            Cenarios::cenario2_4(g);
+        }
+        else if (scenario == "2.5") {
+            Cenarios::cenario2_5(g);
+        }
+        else {
+            cout << "Invalid scenario" << endl;
+            cin.clear();
+            cin.ignore(1000, '\n');
+        }
+        while (true) {
+            cout << "\nNew cenario? (y/n)" << endl;
+            cin >> c;
+            if (c == 'n') {
+                return 0;
+            } if (c == 'y') break;
+            cout << "Invalid input\n";
+        }
+    }
+
+
+    /*
+     switch (scenario) {
+        case "1.1":
+            Cenarios::cenario1_1(g);
+            break;
+        case "1.2":
+            Cenarios::cenario1_2(g);
+            break;
+        case "2.1":
+            Cenarios::cenario2_1(g);
+            break;
+        case "2.2":
+            Cenarios::cenario2_2(g);
+            break;
+        case "2.3":
+            Cenarios::cenario2_3(g);
+            break;
+        case "2.4":
+            Cenarios::cenario2_4(g);
+            break;
+        case "2.5":
+            Cenarios::cenario2_5(g);
+            break;
+        default:
+            cout << "Invalid scenario" << endl;
+            cin.clear();
+            cin.ignore(1000, '\n');
+            break;
+    }
+     */
 
 
     return 0;

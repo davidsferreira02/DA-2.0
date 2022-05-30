@@ -8,13 +8,13 @@
 #include <fstream>
 #include <string>
 #include <sstream>
-#include "Graph.h"
+#include "graph.h"
 
 using namespace std;
 
 class ReadFile {
 public:
-    static Graph<int> readViagem(string filename = "in01.txt");
+    static Graph* readViagem(string filename = "in01.txt");
 };
 
 
