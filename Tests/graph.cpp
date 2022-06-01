@@ -102,7 +102,7 @@ vector<int> Graph::bfsstops(int v, int fv) {
                 nodes[w].predNode = u;
                 nodes[w].predEdge = i;
                 nodes[w].dist = nodes[u].dist + 1;
-                if(w == fv){return backtrace(v, fv);}
+                if(w == fv){return backtraceNode(v, fv);}
             }
         }
     }
@@ -186,7 +186,7 @@ void Graph::FordFulkerson(int start, int end) {
     getFulkersonSolution().printPaths(start,end);
 }
 
-void Graph::pathMaximumCapacity(int start, int end){
+int Graph::pathMaximumCapacity(int start, int end){
     MaxHeap<int, int> maxHeap = MaxHeap<int, int>(this->n, -1);
 
     for(int i = 1; i <= n; i++){
@@ -209,12 +209,65 @@ void Graph::pathMaximumCapacity(int start, int end){
         }
     }
 
-    cout << "Capacity: " << nodes[end].capacity << endl;
-    for(auto node : backtraceNode(start, end)){
+    //cout << "Capacity: " << nodes[end].capacity << endl;
+    vector<int> path = backtraceNode(start, end);
+    /*
+    for(auto node : path) {
         cout << node << " ";
     }
+    */
 
+    return path.size();
 }
+
+
+void Graph::pathCapacityAndStops(int start, int end){
+
+    int maxLimit = pathMaximumCapacity(start, end);
+    int minLimit = bfsstops(start, end).size() - 1;
+
+    for(int size = minLimit; size < maxLimit; size++) {
+        MaxHeap<int, int> maxHeap = MaxHeap<int, int>(this->n, -1);
+
+        for (int i = 1; i <= n; i++) {
+            nodes.at(i).dist = 0;
+            nodes.at(i).predNode = -1;
+            nodes.at(i).capacity = 0;
+            maxHeap.insert(i, nodes.at(i).capacity);
+        }
+        maxHeap.increaseKey(start, nodes[start].capacity = INT32_MAX);
+
+        while (maxHeap.getSize() > 0) {
+            int cNode = maxHeap.removeMax();
+            nodes[cNode].visited = true;
+
+            for (Edge edge: nodes.at(cNode).adj) {
+                if (min(nodes[cNode].capacity, edge.capacity) > nodes[edge.dest].capacity) {
+                    nodes[edge.dest].dist = nodes[cNode].dist + 1;
+                    if(nodes[edge.dest].dist <= size) {
+                        nodes[edge.dest].capacity = min(nodes[cNode].capacity, edge.capacity);
+                        nodes[edge.dest].predNode = cNode;
+                        maxHeap.increaseKey(edge.dest, nodes[edge.dest].capacity);
+                    }
+                    else{
+                        nodes[edge.dest].capacity = 0;
+                        nodes[edge.dest].predNode = cNode;
+                    }
+                }
+            }
+        }
+
+        if(nodes[end].capacity == 0) continue;
+        vector<int> path = backtraceNode(start, end);
+        cout << "Capacity: " << nodes[end].capacity << "\t" << "Switches: " << path.size() - 1 << endl;
+        for(auto node : path) {
+            cout << node << " ";
+        }
+        cout << endl << endl;
+    }
+}
+
+
 
 vector<int> Graph::dijkstraPath(int sNode, int endNode) {
     resetNodePathingValues();

@@ -91,7 +91,8 @@ public:
     void FordFulkerson(int start, int end);
     Graph getFulkersonSolution();
     void printPaths(int start, int end);
-    void pathMaximumCapacity(int start, int end);
+    int pathMaximumCapacity(int start, int end);
+    void pathCapacityAndStops(int start, int end);
 };
 
 #endif

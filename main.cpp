@@ -8,7 +8,8 @@ int main() {
     for(int i = 1; i < 12; i++) {
         cout << "\nFile " << to_string(i) << "\n";
         Graph g = ReadFile::readViagem(to_string(i));
-        g.pathMaximumCapacity(1,g.getSize());
+        g.pathCapacityAndStops(1, g.getSize());
+        cout << endl;
     }
 
     return 0;
