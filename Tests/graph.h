@@ -26,7 +26,7 @@ class Graph {
         int predEdge;
         bool visited;
     };
-
+public:
     int n;              // Graph size (vertices are numbered from 1 to n)
     bool hasDir;        // false: undirect; true: directed
     vector<Node> nodes; // The list of nodes being represented
