@@ -9,20 +9,18 @@ using namespace std;
 #define  NMAX 10000
 
 int main() {
-    /*
-    cout << "\nFile " << to_string(12) << "\n";
-    Graph g = ReadFile::readViagem(to_string(12));
-    Cenarios::cenario2_1(&g);
+    cout << "\nFile " << to_string(3) << "\n";
+    Graph* g = ReadFile::readViagem(to_string(3));
+    g->allPathsCapacityAndStops(1, g->getSize());
     return 0;
 
     for(int i = 11; i < 12; i++) {
         cout << "\nFile " << to_string(i) << "\n";
-        Graph g = ReadFile::readViagem(to_string(i));
-        Cenarios::cenario2_4(&g);
+        Graph* g = ReadFile::readViagem(to_string(i));
+        Cenarios::cenario2_4(g);
     }
 
-    return 0;
-*/
+/*
     string fileName, scenario;
     char c;
 
@@ -67,6 +65,7 @@ int main() {
             cout << "Invalid input\n";
         }
     }
+    /*
 
 
     /*

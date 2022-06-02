@@ -257,13 +257,17 @@ void Graph::pathCapacityAndStops(int start, int end){
 */
 
 void Graph::allPathsCapacityAndStops(int start, int end) {
-    vector<int> path(n, 0);
+    vector<int> path;
 
     int path_index = 0;
 
     int maxStops = pathMaximumCapacity(start, end) - 1;
     vector<int> p = bfs(start, end);
-    int minFlow = getMaxFlow(p, start);
+    int minFlow = getMaxFlowForPath(p, start);
+
+    cout << endl;
+    cout << maxStops << " " << p.size()<< endl;
+    cout << minFlow << endl;
 
     for(int i = 1; i <= n; i++){
         nodes[i].visited = false;
@@ -274,24 +278,22 @@ void Graph::allPathsCapacityAndStops(int start, int end) {
         solution[i] = minFlow;
     }
 
-    allPathsCapacityAndStopsUtil(start, end, path, path_index, minFlow, maxStops, solution);
+    allPathsCapacityAndStopsUtil(start, start, end, path, path_index, minFlow, maxStops, solution);
 
     for(auto const &p : solution){
-        cout << "Size: " << p.first << " ";
+        cout << "Switches: " << p.first << " ";
         cout << "Capacity: " << p.second << endl;
     }
 }
 
-void Graph::allPathsCapacityAndStopsUtil(int u, int d, vector<int> &path, int& path_index, int minFlow, int maxStops, map<int, int>&solution){
+void Graph::allPathsCapacityAndStopsUtil(int start, int u, int d, vector<int> &path, int& path_index, int minFlow, int maxStops, map<int, int>&solution){
     // Mark the current node and store it in path[]
     nodes[u].visited = true;
-    path[path_index] = u;
-    path_index++;
 
     // If current vertex is same as destination, then print
     // current path[]
     if (u == d) {
-        int f = getMaxFlow(path, u);
+        int f = getMaxFlowForPath(path, start);
         if(f > solution[path_index]){
             solution[path_index] = f;
         }
@@ -299,12 +301,20 @@ void Graph::allPathsCapacityAndStopsUtil(int u, int d, vector<int> &path, int& p
     else // If current vertex is not destination
     {
         // Recur for all the vertices adjacent to current vertex
-        for (Edge edge: nodes[u].adj)
-            if (!(nodes[edge.dest].visited) && (edge.capacity >= minFlow) && (path_index <= maxStops) && (edge.capacity != 0))
-                allPathsCapacityAndStopsUtil(edge.dest, d, path, path_index, minFlow, maxStops, solution);
+        for (int i = 0; i < nodes[u].adj.size();i++) {
+            Edge e = nodes[u].adj[i];
+            if (e.capacity == 0) continue;
+            if (!(nodes[e.dest].visited) && (e.capacity >= minFlow) && (path_index < maxStops)){
+                path.push_back(i);
+                path_index++;
+                allPathsCapacityAndStopsUtil(start, e.dest, d, path, path_index, minFlow, maxStops, solution);
+            }
+        }
+
     }
 
     // Remove current vertex from path[] and mark it as unvisited
+    path.pop_back();
     path_index--;
     nodes[u].visited = false;
 }
