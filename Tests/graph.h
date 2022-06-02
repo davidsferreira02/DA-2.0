@@ -6,9 +6,12 @@
 #include <vector>
 #include <list>
 #include <iostream>
+#include "Paths.h"
 #include <map>
 
 using namespace std;
+
+class Paths;
 
 class Graph {
     struct Edge {
@@ -25,6 +28,10 @@ class Graph {
         int predNode;
         int predEdge;
         bool visited;
+        int earliestStart;
+        int GrauE;
+        int latestFinish;
+        int GrauS;
     };
 public:
     int n;              // Graph size (vertices are numbered from 1 to n)
@@ -87,11 +94,20 @@ public:
      */
     vector<int> backtraceNode(int start, int end);
     vector<int> dijkstraPath(int sNode, int endNode);
-    int getMaxFlow(vector<int> path, int start);
+    int getMaxFlowForPath(vector<int> path, int start);
     int getOtherEdge(int srcNode, int srcEdge);
     void FordFulkerson(int start, int end);
-    Graph getFulkersonSolution();
+    Graph* getFulkersonSolution();
+    Paths* getPossiblePaths();
     void printPaths(int start, int end);
+  
+    void addOppositeEdges();
+    vector<int> resetEarliestStartValues();
+    int earliestStart();
+    vector<int> resetLatestFinishValues();
+    int latestFinish();
+    void showWaitingTimes();
+
     int pathMaximumCapacity(int start, int end);
     void pathCapacityAndStops(int start, int end);
     void allPathsCapacityAndStops(int start, int end);

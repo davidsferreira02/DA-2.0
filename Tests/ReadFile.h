@@ -14,7 +14,7 @@ using namespace std;
 
 class ReadFile {
 public:
-    static Graph readViagem(string filename = "in01.txt");
+    static Graph* readViagem(string filename = "in01.txt");
 };
 
 

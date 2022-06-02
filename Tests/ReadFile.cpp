@@ -4,7 +4,7 @@
 
 #include "ReadFile.h"
 
-Graph ReadFile::readViagem(string filename) {
+Graph* ReadFile::readViagem(string filename) {
 
     ifstream in;
     if (stoi(filename) < 10) filename = '0' + filename;
@@ -23,7 +23,7 @@ Graph ReadFile::readViagem(string filename) {
     getline(ss, numNodes, ' ');
     //cout << numNodes << endl;
 
-    Graph graph(stoi(numNodes), true);
+    Graph* graph = new Graph(stoi(numNodes), true);
 
     while(getline(in, s)){
         stringstream ss(s);
@@ -34,8 +34,8 @@ Graph ReadFile::readViagem(string filename) {
 
         //cout << orig << " " << dest << " " << capacity << " " << duration << " " << endl;
 
-        graph.addEdge(stoi(orig), stoi(dest), stoi(capacity), stoi(duration));
-        graph.addEdge(stoi(dest), stoi(orig), 0, stoi(duration));
+        graph->addEdge(stoi(orig), stoi(dest), stoi(capacity), stoi(duration));
+        graph->addEdge(stoi(dest), stoi(orig), 0, stoi(duration));
     }
 
     return graph;
