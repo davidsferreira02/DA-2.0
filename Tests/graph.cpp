@@ -35,30 +35,6 @@ void Graph::resetNodePathingValues() {
     }
 }
 
-/*
-vector<int> Graph::backtrace(int start, int end) {
-    if(nodes[end].predEdge == -1){return {};}
-    vector<int> path = {end};
-    int prevNode,edgeIndex,edgeNum = 0, curNode = end;
-    while (curNode != start){
-        prevNode = nodes[curNode].adj[nodes[curNode].predEdge].dest;
-        for(int i = 0; i < nodes[curNode].adj.size(); i++)
-            if (nodes[curNode].adj[i].dest == prevNode) {
-                edgeNum++;
-                if (i == nodes[curNode].predEdge) break;
-            }
-        for(int i = 0; i < nodes[prevNode].adj.size(); i++)
-            if (nodes[prevNode].adj[i].dest == curNode) {
-                edgeNum--;
-                if (edgeNum == 0) edgeIndex = i;
-            }
-        path.insert(path.begin(),edgeIndex);
-        curNode = prevNode;
-    }
-    return path;
-}
-*/
-
 vector<int> Graph::backtrace(int start, int end) {
     if(nodes[end].predNode== -1){return {};}
     vector<int> path = {};
@@ -82,7 +58,7 @@ vector<int> Graph::backtraceNode(int start, int end) {
     return path;
 }
 
-vector<int> Graph::bfsstops(int v, int fv) {
+vector<int> Graph::bfs(int v, int fv) {
     if(v == fv){return {v};}
 
     resetNodePathingValues();
@@ -102,7 +78,7 @@ vector<int> Graph::bfsstops(int v, int fv) {
                 nodes[w].predNode = u;
                 nodes[w].predEdge = i;
                 nodes[w].dist = nodes[u].dist + 1;
-                if(w == fv){return backtraceNode(v, fv);}
+                if(w == fv){return backtrace(v, fv);}
             }
         }
     }
@@ -112,7 +88,7 @@ vector<int> Graph::bfsstops(int v, int fv) {
 int Graph::getMaxFlow(vector<int> path, int start) {
     int curNode = start, flow = INT32_MAX;
     Edge curEdge;
-    for( auto e: path) {
+    for (auto e: path) {
         curEdge = nodes[curNode].adj[e];
         if (curEdge.capacity < flow) flow = curEdge.capacity;
         curNode = curEdge.dest;
@@ -152,7 +128,7 @@ Graph Graph::getFulkersonSolution() {
 void Graph::printPaths(int start, int end) {
     vector<int> path;
     int flow, sumflow = 0;
-    while (!(path = bfsstops(start, end)).empty()) {
+    while (!(path = bfs(start, end)).empty()) {
         flow = getMaxFlow(path, start);
         sumflow += flow;
         cout << "For flow of " << to_string(flow);
@@ -172,7 +148,7 @@ void Graph::printPaths(int start, int end) {
 void Graph::FordFulkerson(int start, int end) {
     vector<int> path;
     int flow;
-    while (!(path = bfsstops(start, end)).empty()) {
+    while (!(path = bfs(start, end)).empty()) {
         flow = getMaxFlow(path, start);
         int curNode = start;
         Edge curEdge;
@@ -190,6 +166,7 @@ int Graph::pathMaximumCapacity(int start, int end){
     MaxHeap<int, int> maxHeap = MaxHeap<int, int>(this->n, -1);
 
     for(int i = 1; i <= n; i++){
+        nodes.at(i).visited = false;
         nodes.at(i).predNode = -1;
         nodes.at(i).capacity = 0;
         maxHeap.insert(i, nodes.at(i).capacity);
@@ -201,6 +178,7 @@ int Graph::pathMaximumCapacity(int start, int end){
         nodes[cNode].visited = true;
 
         for (Edge edge: nodes.at(cNode).adj) {
+            if (edge.capacity == 0) continue;
             if (min(nodes[cNode].capacity, edge.capacity) > nodes[edge.dest].capacity) {
                 nodes[edge.dest].capacity = min(nodes[cNode].capacity, edge.capacity);
                 nodes[edge.dest].predNode = cNode;
@@ -208,25 +186,24 @@ int Graph::pathMaximumCapacity(int start, int end){
             }
         }
     }
-
-    //cout << "Capacity: " << nodes[end].capacity << endl;
+    cout << "Capacity: " << nodes[end].capacity << endl;
     vector<int> path = backtraceNode(start, end);
-    /*
     for(auto node : path) {
         cout << node << " ";
     }
-    */
 
     return path.size();
 }
 
-
+/*
 void Graph::pathCapacityAndStops(int start, int end){
 
-    int maxLimit = pathMaximumCapacity(start, end);
+    int maxLimit = pathMaximumCapacity(start, end) - 1;
     int minLimit = bfsstops(start, end).size() - 1;
 
-    for(int size = minLimit; size < maxLimit; size++) {
+    cout << minLimit << " " << maxLimit << endl;
+
+    for(int size = minLimit; size <= maxLimit; size++) {
         MaxHeap<int, int> maxHeap = MaxHeap<int, int>(this->n, -1);
 
         for (int i = 1; i <= n; i++) {
@@ -242,17 +219,11 @@ void Graph::pathCapacityAndStops(int start, int end){
             nodes[cNode].visited = true;
 
             for (Edge edge: nodes.at(cNode).adj) {
+                if((nodes[cNode].dist + 1 == size) && (edge.dest != end)) continue;
                 if (min(nodes[cNode].capacity, edge.capacity) > nodes[edge.dest].capacity) {
-                    nodes[edge.dest].dist = nodes[cNode].dist + 1;
-                    if(nodes[edge.dest].dist <= size) {
-                        nodes[edge.dest].capacity = min(nodes[cNode].capacity, edge.capacity);
-                        nodes[edge.dest].predNode = cNode;
-                        maxHeap.increaseKey(edge.dest, nodes[edge.dest].capacity);
-                    }
-                    else{
-                        nodes[edge.dest].capacity = 0;
-                        nodes[edge.dest].predNode = cNode;
-                    }
+                    nodes[edge.dest].capacity = min(nodes[cNode].capacity, edge.capacity);
+                    nodes[edge.dest].predNode = cNode;
+                    maxHeap.increaseKey(edge.dest, nodes[edge.dest].capacity);
                 }
             }
         }
@@ -266,6 +237,61 @@ void Graph::pathCapacityAndStops(int start, int end){
         cout << endl << endl;
     }
 }
+*/
+
+void Graph::allPathsCapacityAndStops(int start, int end) {
+    vector<int> path(n, 0);
+
+    int path_index = 0;
+
+    int maxStops = pathMaximumCapacity(start, end) - 1;
+    vector<int> p = bfs(start, end);
+    int minFlow = getMaxFlow(p, start);
+
+    for(int i = 1; i <= n; i++){
+        nodes[i].visited = false;
+    }
+
+    map<int, int> solution;
+    for(int i = p.size(); i <= maxStops; i++){
+        solution[i] = minFlow;
+    }
+
+    allPathsCapacityAndStopsUtil(start, end, path, path_index, minFlow, maxStops, solution);
+
+    for(auto const &p : solution){
+        cout << "Size: " << p.first << " ";
+        cout << "Capacity: " << p.second << endl;
+    }
+}
+
+void Graph::allPathsCapacityAndStopsUtil(int u, int d, vector<int> &path, int& path_index, int minFlow, int maxStops, map<int, int>&solution){
+    // Mark the current node and store it in path[]
+    nodes[u].visited = true;
+    path[path_index] = u;
+    path_index++;
+
+    // If current vertex is same as destination, then print
+    // current path[]
+    if (u == d) {
+        int f = getMaxFlow(path, u);
+        if(f > solution[path_index]){
+            solution[path_index] = f;
+        }
+    }
+    else // If current vertex is not destination
+    {
+        // Recur for all the vertices adjacent to current vertex
+        for (Edge edge: nodes[u].adj)
+            if (!(nodes[edge.dest].visited) && (edge.capacity >= minFlow) && (path_index <= maxStops) && (edge.capacity != 0))
+                allPathsCapacityAndStopsUtil(edge.dest, d, path, path_index, minFlow, maxStops, solution);
+    }
+
+    // Remove current vertex from path[] and mark it as unvisited
+    path_index--;
+    nodes[u].visited = false;
+}
+
 
 
 

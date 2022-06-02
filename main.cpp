@@ -5,10 +5,10 @@ using namespace std;
 
 int main() {
 
-    for(int i = 1; i < 12; i++) {
+    for(int i = 11; i < 12; i++) {
         cout << "\nFile " << to_string(i) << "\n";
         Graph g = ReadFile::readViagem(to_string(i));
-        g.pathCapacityAndStops(1, g.getSize());
+        g.allPathsCapacityAndStops(1, g.getSize());
         cout << endl;
     }
 

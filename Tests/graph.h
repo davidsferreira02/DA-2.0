@@ -6,6 +6,7 @@
 #include <vector>
 #include <list>
 #include <iostream>
+#include <map>
 
 using namespace std;
 
@@ -73,9 +74,9 @@ public:
      *
      * @param v Starting node
      * @param fv End node
-     * @return Vector with the stops between the two nodes
+     * @return Vector with the edges between the two nodes
      */
-    vector<int> bfsstops(int v, int fv);
+    vector<int> bfs(int v, int fv);
     /*!
      * Finds the minimum path using the dijkstra algorithm
      * Big 0 : O(|E| log|V|) (where V is the number of nodes and E the number of edges)
@@ -93,6 +94,8 @@ public:
     void printPaths(int start, int end);
     int pathMaximumCapacity(int start, int end);
     void pathCapacityAndStops(int start, int end);
+    void allPathsCapacityAndStops(int start, int end);
+    void allPathsCapacityAndStopsUtil(int u, int d, vector<int> &path, int& path_index, int minLimit, int maxLimit, map<int, int>& solution);
 };
 
 #endif
