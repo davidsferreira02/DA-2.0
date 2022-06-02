@@ -9,8 +9,8 @@ using namespace std;
 #define  NMAX 10000
 
 int main() {
-    cout << "\nFile " << to_string(3) << "\n";
-    Graph* g = ReadFile::readViagem(to_string(3));
+    cout << "\nFile " << to_string(4) << "\n";
+    Graph* g = ReadFile::readViagem(to_string(4));
     g->allPathsCapacityAndStops(1, g->getSize());
     return 0;
 

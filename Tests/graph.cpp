@@ -280,9 +280,12 @@ void Graph::allPathsCapacityAndStops(int start, int end) {
 
     allPathsCapacityAndStopsUtil(start, start, end, path, path_index, minFlow, maxStops, solution);
 
+    int min = 0;
     for(auto const &p : solution){
+        if(p.second > min)
+        {min = p.second;
         cout << "Switches: " << p.first << " ";
-        cout << "Capacity: " << p.second << endl;
+        cout << "Capacity: " << p.second << endl;}
     }
 }
 

@@ -5,7 +5,7 @@ void Cenarios::cenario1_1(Graph* g) {
 }
 
 void Cenarios::cenario1_2(Graph* g) {
-
+    g->allPathsCapacityAndStops(1, g->getSize());
 }
 
 void Cenarios::cenario2_1(Graph* g) {
