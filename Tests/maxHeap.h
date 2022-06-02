@@ -49,6 +49,7 @@ void MaxHeap<K,V>::upHeap(int i) {
     }
 }
 
+
 // Make a value go "down the tree" until it reaches its position
 template <class K, class V>
 void MaxHeap<K,V>::downHeap(int i) {

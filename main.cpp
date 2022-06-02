@@ -15,7 +15,7 @@ int main() {
     Cenarios::cenario2_1(&g);
     return 0;
 
-    for(int i = 1; i < 12; i++) {
+    for(int i = 11; i < 12; i++) {
         cout << "\nFile " << to_string(i) << "\n";
         Graph g = ReadFile::readViagem(to_string(i));
         Cenarios::cenario2_4(&g);

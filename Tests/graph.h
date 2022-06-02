@@ -7,6 +7,7 @@
 #include <list>
 #include <iostream>
 #include "Paths.h"
+#include <map>
 
 using namespace std;
 
@@ -32,7 +33,7 @@ class Graph {
         int latestFinish;
         int GrauS;
     };
-
+public:
     int n;              // Graph size (vertices are numbered from 1 to n)
     bool hasDir;        // false: undirect; true: directed
     vector<Node> nodes; // The list of nodes being represented
@@ -80,7 +81,7 @@ public:
      *
      * @param v Starting node
      * @param fv End node
-     * @return Vector with the stops between the two nodes
+     * @return Vector with the edges between the two nodes
      */
     vector<int> bfs(int v, int fv);
     /*!
@@ -99,13 +100,18 @@ public:
     Graph* getFulkersonSolution();
     Paths* getPossiblePaths();
     void printPaths(int start, int end);
+  
     void addOppositeEdges();
     vector<int> resetEarliestStartValues();
     int earliestStart();
     vector<int> resetLatestFinishValues();
     int latestFinish();
     void showWaitingTimes();
-    void pathMaximumCapacity(int start, int end);
+
+    int pathMaximumCapacity(int start, int end);
+    void pathCapacityAndStops(int start, int end);
+    void allPathsCapacityAndStops(int start, int end);
+    void allPathsCapacityAndStopsUtil(int u, int d, vector<int> &path, int& path_index, int minLimit, int maxLimit, map<int, int>& solution);
 };
 
 #endif
