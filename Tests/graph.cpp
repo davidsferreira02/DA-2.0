@@ -179,7 +179,7 @@ void Graph::FordFulkerson(int start, int end) {
     }
 }
 
-int Graph::pathMaximumCapacity(int start, int end){
+vector<int> Graph::pathMaximumCapacity(int start, int end){
     MaxHeap<int, int> maxHeap = MaxHeap<int, int>(this->n, -1);
 
     for(int i = 1; i <= n; i++){
@@ -203,19 +203,14 @@ int Graph::pathMaximumCapacity(int start, int end){
             }
         }
     }
-    cout << "Capacity: " << nodes[end].capacity << endl;
     vector<int> path = backtraceNode(start, end);
-    for(auto node : path) {
-        cout << node << " ";
-    }
-
-    return path.size();
+    return path;
 }
 
 
 void Graph::pathCapacityAndStops(int start, int end){
 
-    int maxLimit = pathMaximumCapacity(start, end) - 1;
+    int maxLimit = pathMaximumCapacity(start, end).size() - 1;
     vector<int> pBfs = bfs(start, end);
     int minLimit = pBfs.size();
     int minFlow = getMaxFlowForPath(pBfs, start);
@@ -278,13 +273,9 @@ void Graph::allPathsCapacityAndStops(int start, int end) {
 
     int path_index = 0;
 
-    int maxStops = pathMaximumCapacity(start, end) - 1;
+    int maxStops = pathMaximumCapacity(start, end).size() - 1;
     vector<int> p = bfs(start, end);
     int minFlow = getMaxFlowForPath(p, start);
-
-    cout << endl;
-    cout << maxStops << " " << p.size()<< endl;
-    cout << minFlow << endl;
 
     for(int i = 1; i <= n; i++){
         nodes[i].visited = false;
