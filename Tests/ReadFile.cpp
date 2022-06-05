@@ -7,6 +7,7 @@
 Graph* ReadFile::readViagem(string filename) {
 
     ifstream in;
+
     if (stoi(filename) < 10) filename = '0' + filename;
 
     in.open("../Tests/Tests_B/in" + filename + "_b.txt");

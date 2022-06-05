@@ -98,14 +98,17 @@ public:
     vector<int> dijkstraPath(int sNode, int endNode);
     int getMaxFlowForPath(vector<int> path, int start);
     int getOtherEdge(int srcNode, int srcEdge);
-    void FordFulkerson(int start, int end);
+    bool FordFulkerson(int start, int end);
     Graph* getFulkersonSolution();
-    Paths* getPossiblePaths();
+    Paths* getPossiblePaths(int start, int end);
     void printPaths(int start, int end);
   
     void addOppositeEdges();
+    bool hasEdge(int src, int dest);
+    void addEdgesToShorterGraph(Graph* g, int node);
     vector<int> resetEarliestStartValues();
-    int earliestStart();
+    Graph* getGraphForStart(int start);
+    int earliestStart(int end);
     vector<int> resetLatestFinishValues();
     int latestFinish();
     void showWaitingTimes();
