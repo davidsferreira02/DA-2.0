@@ -1,0 +1,464 @@
+\hypertarget{class_graph}{}\doxysection{Graph Class Reference}
+\label{class_graph}\index{Graph@{Graph}}
+
+
+{\ttfamily \#include $<$graph.\+h$>$}
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_graph_a18b4f6dec368300991b68dd75e39a5e9}{Graph}} (int \mbox{\hyperlink{class_graph_a71b5e16eb9e0670fea3ecee3526abb41}{nodes}}, bool dir=false)
+\item 
+int \mbox{\hyperlink{class_graph_ab7d965333f0ae9e6727676db3224ec4b}{get\+Size}} ()
+\item 
+void \mbox{\hyperlink{class_graph_ac3157a04ab5d808f5bc15823827c744e}{add\+Edge}} (int src, int dest, int capacity, int duration)
+\item 
+void \mbox{\hyperlink{class_graph_a5ac05db53839e72af76cdb2bafe88b77}{print\+Graph}} ()
+\item 
+vector$<$ int $>$ \mbox{\hyperlink{class_graph_abd7519e255c93c133cff2e396e450349}{bfs}} (int v, int fv)
+\item 
+vector$<$ int $>$ \mbox{\hyperlink{class_graph_a1249478db7cfca87025fa941fec72db6}{backtrace\+Node}} (int start, int end)
+\item 
+vector$<$ int $>$ \mbox{\hyperlink{class_graph_ad5eb4743271ef1af85276708ce87d467}{dijkstra\+Path}} (int s\+Node, int end\+Node)
+\item 
+int \mbox{\hyperlink{class_graph_a8d8a81ed3b47f7bb9f1d63a07def5dbf}{get\+Max\+Flow\+For\+Path}} (vector$<$ int $>$ path, int start)
+\item 
+int \mbox{\hyperlink{class_graph_adae41b054ee42d9d7e5d74ec45eb1e57}{get\+Other\+Edge}} (int src\+Node, int src\+Edge)
+\item 
+void \mbox{\hyperlink{class_graph_a1285e2cd97df6ec36ad131defbf55590}{print\+Paths}} (int start, int end)
+\item 
+bool \mbox{\hyperlink{class_graph_ac7b7b5550b548902ffece87f85ef0e17}{Ford\+Fulkerson}} (int start, int end)
+\item 
+\mbox{\hyperlink{class_graph}{Graph}} $\ast$ \mbox{\hyperlink{class_graph_adb1833e6559b122570a08f44e9637e4b}{get\+Fulkerson\+Solution}} ()
+\item 
+\mbox{\hyperlink{class_paths}{Paths}} $\ast$ \mbox{\hyperlink{class_graph_a91da9f786a6dc9ca9d6a05a861a098de}{get\+Possible\+Paths}} (int start, int end)
+\item 
+void \mbox{\hyperlink{class_graph_a42ebcf269ed6a72e275e7f0a63fe047c}{add\+Opposite\+Edges}} ()
+\item 
+vector$<$ int $>$ \mbox{\hyperlink{class_graph_a9dc7918bca4da94a1cb0fff0e25633ba}{reset\+Earliest\+Start\+Values}} ()
+\item 
+int \mbox{\hyperlink{class_graph_a8e5d1bb4cc426858e41877d2dd482737}{earliest\+Start}} (int end)
+\item 
+bool \mbox{\hyperlink{class_graph_a3877d34f266236503c14865ad9391ccd}{has\+Edge}} (int src, int dest)
+\item 
+void \mbox{\hyperlink{class_graph_aa5c7e678d02d8df2b02b54371188a129}{add\+Edges\+To\+Shorter\+Graph}} (\mbox{\hyperlink{class_graph}{Graph}} $\ast$g, int node)
+\item 
+\mbox{\hyperlink{class_graph}{Graph}} $\ast$ \mbox{\hyperlink{class_graph_a0d2dbefba0df3737e260dc3d92ada011}{get\+Graph\+For\+Start}} (int start)
+\item 
+vector$<$ int $>$ \mbox{\hyperlink{class_graph_ada0ba3eade2c4dff32d1a5b6e9576a98}{reset\+Latest\+Finish\+Values}} ()
+\item 
+int \mbox{\hyperlink{class_graph_aaadba8c05d5214c8a52a5c1caf4d1995}{latest\+Finish}} ()
+\item 
+void \mbox{\hyperlink{class_graph_a63729dc836b7324cabd9439210b2c96f}{show\+Waiting\+Times}} ()
+\item 
+vector$<$ int $>$ \mbox{\hyperlink{class_graph_af4ed5328624a1fe5ebbea296ec8c90ee}{path\+Maximum\+Capacity}} (int start, int end)
+\item 
+void \mbox{\hyperlink{class_graph_a64172ef95e1368d4f4799a141be700b4}{path\+Capacity\+And\+Stops}} (int start, int end)
+\item 
+void \mbox{\hyperlink{class_graph_a0e21800a95837e0a41f0c7eea2a5fa39}{all\+Paths\+Capacity\+And\+Stops}} (int start, int end)
+\item 
+void \mbox{\hyperlink{class_graph_a572ea6e36a231f16780d6015e7484215}{all\+Paths\+Capacity\+And\+Stops\+Util}} (int start, int u, int d, vector$<$ int $>$ \&path, int \&path\+\_\+index, int min\+Flow, int max\+Stops, map$<$ int, int $>$ \&solution)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{class_graph_a81a76a428e630453ef019a15b9092967}{n}}
+\item 
+bool \mbox{\hyperlink{class_graph_a60baa846929049c84b7e50ffb5f401e8}{has\+Dir}}
+\item 
+vector$<$ Node $>$ \mbox{\hyperlink{class_graph_a71b5e16eb9e0670fea3ecee3526abb41}{nodes}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_graph_a18b4f6dec368300991b68dd75e39a5e9}\label{class_graph_a18b4f6dec368300991b68dd75e39a5e9}} 
+\index{Graph@{Graph}!Graph@{Graph}}
+\index{Graph@{Graph}!Graph@{Graph}}
+\doxysubsubsection{\texorpdfstring{Graph()}{Graph()}}
+{\footnotesize\ttfamily Graph\+::\+Graph (\begin{DoxyParamCaption}\item[{int}]{nodes,  }\item[{bool}]{dir = {\ttfamily false} }\end{DoxyParamCaption})}
+
+Constructor\+: nr nodes and direction (default\+: undirected)
+
+
+\begin{DoxyParams}{Parameters}
+{\em nodes} & nr nodes \\
+\hline
+{\em dir} & true if the graph is directed, false otherwise \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_graph_ac3157a04ab5d808f5bc15823827c744e}\label{class_graph_ac3157a04ab5d808f5bc15823827c744e}} 
+\index{Graph@{Graph}!addEdge@{addEdge}}
+\index{addEdge@{addEdge}!Graph@{Graph}}
+\doxysubsubsection{\texorpdfstring{addEdge()}{addEdge()}}
+{\footnotesize\ttfamily void Graph\+::add\+Edge (\begin{DoxyParamCaption}\item[{int}]{src,  }\item[{int}]{dest,  }\item[{int}]{capacity,  }\item[{int}]{duration }\end{DoxyParamCaption})}
+
+Add edge from source to destination with a certain capacity
+
+
+\begin{DoxyParams}{Parameters}
+{\em src} & Start node \\
+\hline
+{\em dest} & End node \\
+\hline
+{\em capacity} & Capacity of the connection \\
+\hline
+{\em duration} & Duration of the connection \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_graph_aa5c7e678d02d8df2b02b54371188a129}\label{class_graph_aa5c7e678d02d8df2b02b54371188a129}} 
+\index{Graph@{Graph}!addEdgesToShorterGraph@{addEdgesToShorterGraph}}
+\index{addEdgesToShorterGraph@{addEdgesToShorterGraph}!Graph@{Graph}}
+\doxysubsubsection{\texorpdfstring{addEdgesToShorterGraph()}{addEdgesToShorterGraph()}}
+{\footnotesize\ttfamily void Graph\+::add\+Edges\+To\+Shorter\+Graph (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_graph}{Graph}} $\ast$}]{g,  }\item[{int}]{node }\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}{Parameters}
+{\em g} & \mbox{\hyperlink{class_graph}{Graph}} to add edges on \\
+\hline
+{\em node} & Node which edges will be add \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_graph_a42ebcf269ed6a72e275e7f0a63fe047c}\label{class_graph_a42ebcf269ed6a72e275e7f0a63fe047c}} 
+\index{Graph@{Graph}!addOppositeEdges@{addOppositeEdges}}
+\index{addOppositeEdges@{addOppositeEdges}!Graph@{Graph}}
+\doxysubsubsection{\texorpdfstring{addOppositeEdges()}{addOppositeEdges()}}
+{\footnotesize\ttfamily void Graph\+::add\+Opposite\+Edges (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Add edges in the opposite direction for the residual graph \mbox{\Hypertarget{class_graph_a0e21800a95837e0a41f0c7eea2a5fa39}\label{class_graph_a0e21800a95837e0a41f0c7eea2a5fa39}} 
+\index{Graph@{Graph}!allPathsCapacityAndStops@{allPathsCapacityAndStops}}
+\index{allPathsCapacityAndStops@{allPathsCapacityAndStops}!Graph@{Graph}}
+\doxysubsubsection{\texorpdfstring{allPathsCapacityAndStops()}{allPathsCapacityAndStops()}}
+{\footnotesize\ttfamily void Graph\+::all\+Paths\+Capacity\+And\+Stops (\begin{DoxyParamCaption}\item[{int}]{start,  }\item[{int}]{end }\end{DoxyParamCaption})}
+
+Recursive/brute force solution to find the optimal paths in terms of stops and capacity (pareto-\/optimal solutions) 
+\begin{DoxyParams}{Parameters}
+{\em start} & Starting node \\
+\hline
+{\em end} & End node \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_graph_a572ea6e36a231f16780d6015e7484215}\label{class_graph_a572ea6e36a231f16780d6015e7484215}} 
+\index{Graph@{Graph}!allPathsCapacityAndStopsUtil@{allPathsCapacityAndStopsUtil}}
+\index{allPathsCapacityAndStopsUtil@{allPathsCapacityAndStopsUtil}!Graph@{Graph}}
+\doxysubsubsection{\texorpdfstring{allPathsCapacityAndStopsUtil()}{allPathsCapacityAndStopsUtil()}}
+{\footnotesize\ttfamily void Graph\+::all\+Paths\+Capacity\+And\+Stops\+Util (\begin{DoxyParamCaption}\item[{int}]{start,  }\item[{int}]{u,  }\item[{int}]{d,  }\item[{vector$<$ int $>$ \&}]{path,  }\item[{int \&}]{path\+\_\+index,  }\item[{int}]{min\+Flow,  }\item[{int}]{max\+Stops,  }\item[{map$<$ int, int $>$ \&}]{solution }\end{DoxyParamCaption})}
+
+Helper function to the all\+Paths\+Capacity\+And\+Stops
+
+
+\begin{DoxyParams}{Parameters}
+{\em start} & Starting node \\
+\hline
+{\em u} & Current node \\
+\hline
+{\em d} & End node \\
+\hline
+{\em path} & Current path \\
+\hline
+{\em path\+\_\+index} & Current index \\
+\hline
+{\em min\+Flow} & Bfs flow \\
+\hline
+{\em max\+Stops} & CCM stops \\
+\hline
+{\em solution} & Map with the best flow for each path size \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_graph_a1249478db7cfca87025fa941fec72db6}\label{class_graph_a1249478db7cfca87025fa941fec72db6}} 
+\index{Graph@{Graph}!backtraceNode@{backtraceNode}}
+\index{backtraceNode@{backtraceNode}!Graph@{Graph}}
+\doxysubsubsection{\texorpdfstring{backtraceNode()}{backtraceNode()}}
+{\footnotesize\ttfamily vector$<$ int $>$ Graph\+::backtrace\+Node (\begin{DoxyParamCaption}\item[{int}]{start,  }\item[{int}]{end }\end{DoxyParamCaption})}
+
+Go to the previous nodes from the end to the start, using the node attribute pred\+Node
+
+
+\begin{DoxyParams}{Parameters}
+{\em start} & Starting node \\
+\hline
+{\em end} & End node \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Empty vector if there is no path, or the path of nodes otherwise 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_graph_abd7519e255c93c133cff2e396e450349}\label{class_graph_abd7519e255c93c133cff2e396e450349}} 
+\index{Graph@{Graph}!bfs@{bfs}}
+\index{bfs@{bfs}!Graph@{Graph}}
+\doxysubsubsection{\texorpdfstring{bfs()}{bfs()}}
+{\footnotesize\ttfamily vector$<$ int $>$ Graph\+::bfs (\begin{DoxyParamCaption}\item[{int}]{v,  }\item[{int}]{fv }\end{DoxyParamCaption})}
+
+Find the minimum distance between two nodes by using the Breadth-\/\+First Search Big 0 \+: O($\vert$\+V$\vert$ + $\vert$\+E$\vert$) (where V is the number of nodes and E the number of edges)
+
+
+\begin{DoxyParams}{Parameters}
+{\em v} & Starting node \\
+\hline
+{\em fv} & End node \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Vector with the edges between the two nodes 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_graph_ad5eb4743271ef1af85276708ce87d467}\label{class_graph_ad5eb4743271ef1af85276708ce87d467}} 
+\index{Graph@{Graph}!dijkstraPath@{dijkstraPath}}
+\index{dijkstraPath@{dijkstraPath}!Graph@{Graph}}
+\doxysubsubsection{\texorpdfstring{dijkstraPath()}{dijkstraPath()}}
+{\footnotesize\ttfamily vector$<$ int $>$ Graph\+::dijkstra\+Path (\begin{DoxyParamCaption}\item[{int}]{s\+Node,  }\item[{int}]{end\+Node }\end{DoxyParamCaption})}
+
+Finds the minimum path using the dijkstra algorithm Big 0 \+: O($\vert$\+E$\vert$ log$\vert$\+V$\vert$) (where V is the number of nodes and E the number of edges)
+
+
+\begin{DoxyParams}{Parameters}
+{\em s\+Node} & Starting node \\
+\hline
+{\em end\+Node} & End node \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Vector with the stops between the two nodes 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_graph_a8e5d1bb4cc426858e41877d2dd482737}\label{class_graph_a8e5d1bb4cc426858e41877d2dd482737}} 
+\index{Graph@{Graph}!earliestStart@{earliestStart}}
+\index{earliestStart@{earliestStart}!Graph@{Graph}}
+\doxysubsubsection{\texorpdfstring{earliestStart()}{earliestStart()}}
+{\footnotesize\ttfamily int Graph\+::earliest\+Start (\begin{DoxyParamCaption}\item[{int}]{end }\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}{Parameters}
+{\em end} & End node \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Time of the ES for the finishing node 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_graph_ac7b7b5550b548902ffece87f85ef0e17}\label{class_graph_ac7b7b5550b548902ffece87f85ef0e17}} 
+\index{Graph@{Graph}!FordFulkerson@{FordFulkerson}}
+\index{FordFulkerson@{FordFulkerson}!Graph@{Graph}}
+\doxysubsubsection{\texorpdfstring{FordFulkerson()}{FordFulkerson()}}
+{\footnotesize\ttfamily bool Graph\+::\+Ford\+Fulkerson (\begin{DoxyParamCaption}\item[{int}]{start,  }\item[{int}]{end }\end{DoxyParamCaption})}
+
+Edmonds-\/\+Karp algorithm to find the max flow of the graph Big O\+: O(\+E$^\wedge$2 $\ast$ V) (where V is the number of nodes and E the number of edges)
+
+
+\begin{DoxyParams}{Parameters}
+{\em start} & \\
+\hline
+{\em end} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True if there is a path, false otherwise 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_graph_adb1833e6559b122570a08f44e9637e4b}\label{class_graph_adb1833e6559b122570a08f44e9637e4b}} 
+\index{Graph@{Graph}!getFulkersonSolution@{getFulkersonSolution}}
+\index{getFulkersonSolution@{getFulkersonSolution}!Graph@{Graph}}
+\doxysubsubsection{\texorpdfstring{getFulkersonSolution()}{getFulkersonSolution()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_graph}{Graph}} $\ast$ Graph\+::get\+Fulkerson\+Solution (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\begin{DoxyReturn}{Returns}
+\mbox{\hyperlink{class_graph}{Graph}} with Edmond-\/\+Karp solution 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_graph_a0d2dbefba0df3737e260dc3d92ada011}\label{class_graph_a0d2dbefba0df3737e260dc3d92ada011}} 
+\index{Graph@{Graph}!getGraphForStart@{getGraphForStart}}
+\index{getGraphForStart@{getGraphForStart}!Graph@{Graph}}
+\doxysubsubsection{\texorpdfstring{getGraphForStart()}{getGraphForStart()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_graph}{Graph}} $\ast$ Graph\+::get\+Graph\+For\+Start (\begin{DoxyParamCaption}\item[{int}]{start }\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}{Parameters}
+{\em start} & Start node \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Create a graph with the possible paths 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_graph_a8d8a81ed3b47f7bb9f1d63a07def5dbf}\label{class_graph_a8d8a81ed3b47f7bb9f1d63a07def5dbf}} 
+\index{Graph@{Graph}!getMaxFlowForPath@{getMaxFlowForPath}}
+\index{getMaxFlowForPath@{getMaxFlowForPath}!Graph@{Graph}}
+\doxysubsubsection{\texorpdfstring{getMaxFlowForPath()}{getMaxFlowForPath()}}
+{\footnotesize\ttfamily int Graph\+::get\+Max\+Flow\+For\+Path (\begin{DoxyParamCaption}\item[{vector$<$ int $>$}]{path,  }\item[{int}]{start }\end{DoxyParamCaption})}
+
+Get the maximum flow that can go trough a path
+
+
+\begin{DoxyParams}{Parameters}
+{\em path} & Path of edges \\
+\hline
+{\em start} & Start node \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Max Capacity of the path 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_graph_adae41b054ee42d9d7e5d74ec45eb1e57}\label{class_graph_adae41b054ee42d9d7e5d74ec45eb1e57}} 
+\index{Graph@{Graph}!getOtherEdge@{getOtherEdge}}
+\index{getOtherEdge@{getOtherEdge}!Graph@{Graph}}
+\doxysubsubsection{\texorpdfstring{getOtherEdge()}{getOtherEdge()}}
+{\footnotesize\ttfamily int Graph\+::get\+Other\+Edge (\begin{DoxyParamCaption}\item[{int}]{src\+Node,  }\item[{int}]{src\+Edge }\end{DoxyParamCaption})}
+
+Get the edge from the residual graph associated with the given edge
+
+
+\begin{DoxyParams}{Parameters}
+{\em src\+Node} & \\
+\hline
+{\em src\+Edge} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Number of the correspondent edge 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_graph_a91da9f786a6dc9ca9d6a05a861a098de}\label{class_graph_a91da9f786a6dc9ca9d6a05a861a098de}} 
+\index{Graph@{Graph}!getPossiblePaths@{getPossiblePaths}}
+\index{getPossiblePaths@{getPossiblePaths}!Graph@{Graph}}
+\doxysubsubsection{\texorpdfstring{getPossiblePaths()}{getPossiblePaths()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_paths}{Paths}} $\ast$ Graph\+::get\+Possible\+Paths (\begin{DoxyParamCaption}\item[{int}]{start,  }\item[{int}]{end }\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}{Parameters}
+{\em start} & Starting node \\
+\hline
+{\em end} & End node \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+All paths from the start to the end 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_graph_ab7d965333f0ae9e6727676db3224ec4b}\label{class_graph_ab7d965333f0ae9e6727676db3224ec4b}} 
+\index{Graph@{Graph}!getSize@{getSize}}
+\index{getSize@{getSize}!Graph@{Graph}}
+\doxysubsubsection{\texorpdfstring{getSize()}{getSize()}}
+{\footnotesize\ttfamily int Graph\+::get\+Size (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_graph_a3877d34f266236503c14865ad9391ccd}\label{class_graph_a3877d34f266236503c14865ad9391ccd}} 
+\index{Graph@{Graph}!hasEdge@{hasEdge}}
+\index{hasEdge@{hasEdge}!Graph@{Graph}}
+\doxysubsubsection{\texorpdfstring{hasEdge()}{hasEdge()}}
+{\footnotesize\ttfamily bool Graph\+::has\+Edge (\begin{DoxyParamCaption}\item[{int}]{src,  }\item[{int}]{dest }\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}{Parameters}
+{\em src} & Start node \\
+\hline
+{\em dest} & End node \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True if there is a edge between the two nodes 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_graph_aaadba8c05d5214c8a52a5c1caf4d1995}\label{class_graph_aaadba8c05d5214c8a52a5c1caf4d1995}} 
+\index{Graph@{Graph}!latestFinish@{latestFinish}}
+\index{latestFinish@{latestFinish}!Graph@{Graph}}
+\doxysubsubsection{\texorpdfstring{latestFinish()}{latestFinish()}}
+{\footnotesize\ttfamily int Graph\+::latest\+Finish (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\begin{DoxyReturn}{Returns}
+Time of LF for the finishing node 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_graph_a64172ef95e1368d4f4799a141be700b4}\label{class_graph_a64172ef95e1368d4f4799a141be700b4}} 
+\index{Graph@{Graph}!pathCapacityAndStops@{pathCapacityAndStops}}
+\index{pathCapacityAndStops@{pathCapacityAndStops}!Graph@{Graph}}
+\doxysubsubsection{\texorpdfstring{pathCapacityAndStops()}{pathCapacityAndStops()}}
+{\footnotesize\ttfamily void Graph\+::path\+Capacity\+And\+Stops (\begin{DoxyParamCaption}\item[{int}]{start,  }\item[{int}]{end }\end{DoxyParamCaption})}
+
+Retrieve the specificities of the optimal paths in terms of stops and capacity (pareto-\/optimal solutions) 
+\begin{DoxyParams}{Parameters}
+{\em start} & Starting node \\
+\hline
+{\em end} & End node \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_graph_af4ed5328624a1fe5ebbea296ec8c90ee}\label{class_graph_af4ed5328624a1fe5ebbea296ec8c90ee}} 
+\index{Graph@{Graph}!pathMaximumCapacity@{pathMaximumCapacity}}
+\index{pathMaximumCapacity@{pathMaximumCapacity}!Graph@{Graph}}
+\doxysubsubsection{\texorpdfstring{pathMaximumCapacity()}{pathMaximumCapacity()}}
+{\footnotesize\ttfamily vector$<$ int $>$ Graph\+::path\+Maximum\+Capacity (\begin{DoxyParamCaption}\item[{int}]{start,  }\item[{int}]{end }\end{DoxyParamCaption})}
+
+Get the path of maximum capacity in a graph Big O\+: O((V + E) log2 $\vert$\+V$\vert$), (where V is the number of nodes and E the number of edges)
+
+
+\begin{DoxyParams}{Parameters}
+{\em start} & Starting node \\
+\hline
+{\em end} & End node \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Path of nodes 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_graph_a5ac05db53839e72af76cdb2bafe88b77}\label{class_graph_a5ac05db53839e72af76cdb2bafe88b77}} 
+\index{Graph@{Graph}!printGraph@{printGraph}}
+\index{printGraph@{printGraph}!Graph@{Graph}}
+\doxysubsubsection{\texorpdfstring{printGraph()}{printGraph()}}
+{\footnotesize\ttfamily void Graph\+::print\+Graph (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Prints all the nodes and the respective edges \mbox{\Hypertarget{class_graph_a1285e2cd97df6ec36ad131defbf55590}\label{class_graph_a1285e2cd97df6ec36ad131defbf55590}} 
+\index{Graph@{Graph}!printPaths@{printPaths}}
+\index{printPaths@{printPaths}!Graph@{Graph}}
+\doxysubsubsection{\texorpdfstring{printPaths()}{printPaths()}}
+{\footnotesize\ttfamily void Graph\+::print\+Paths (\begin{DoxyParamCaption}\item[{int}]{start,  }\item[{int}]{end }\end{DoxyParamCaption})}
+
+Print paths on the solution graph
+
+
+\begin{DoxyParams}{Parameters}
+{\em start} & Starting node \\
+\hline
+{\em end} & End node \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_graph_a9dc7918bca4da94a1cb0fff0e25633ba}\label{class_graph_a9dc7918bca4da94a1cb0fff0e25633ba}} 
+\index{Graph@{Graph}!resetEarliestStartValues@{resetEarliestStartValues}}
+\index{resetEarliestStartValues@{resetEarliestStartValues}!Graph@{Graph}}
+\doxysubsubsection{\texorpdfstring{resetEarliestStartValues()}{resetEarliestStartValues()}}
+{\footnotesize\ttfamily vector$<$ int $>$ Graph\+::reset\+Earliest\+Start\+Values (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Reset ES values \begin{DoxyReturn}{Returns}
+Nodes which their degrees of entry are 0 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_graph_ada0ba3eade2c4dff32d1a5b6e9576a98}\label{class_graph_ada0ba3eade2c4dff32d1a5b6e9576a98}} 
+\index{Graph@{Graph}!resetLatestFinishValues@{resetLatestFinishValues}}
+\index{resetLatestFinishValues@{resetLatestFinishValues}!Graph@{Graph}}
+\doxysubsubsection{\texorpdfstring{resetLatestFinishValues()}{resetLatestFinishValues()}}
+{\footnotesize\ttfamily vector$<$ int $>$ Graph\+::reset\+Latest\+Finish\+Values (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Reset LF values \begin{DoxyReturn}{Returns}
+Nodes which their degress of entry are 1 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_graph_a63729dc836b7324cabd9439210b2c96f}\label{class_graph_a63729dc836b7324cabd9439210b2c96f}} 
+\index{Graph@{Graph}!showWaitingTimes@{showWaitingTimes}}
+\index{showWaitingTimes@{showWaitingTimes}!Graph@{Graph}}
+\doxysubsubsection{\texorpdfstring{showWaitingTimes()}{showWaitingTimes()}}
+{\footnotesize\ttfamily void Graph\+::show\+Waiting\+Times (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Print the waiting times in the various nodes 
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{class_graph_a60baa846929049c84b7e50ffb5f401e8}\label{class_graph_a60baa846929049c84b7e50ffb5f401e8}} 
+\index{Graph@{Graph}!hasDir@{hasDir}}
+\index{hasDir@{hasDir}!Graph@{Graph}}
+\doxysubsubsection{\texorpdfstring{hasDir}{hasDir}}
+{\footnotesize\ttfamily bool Graph\+::has\+Dir}
+
+\mbox{\Hypertarget{class_graph_a81a76a428e630453ef019a15b9092967}\label{class_graph_a81a76a428e630453ef019a15b9092967}} 
+\index{Graph@{Graph}!n@{n}}
+\index{n@{n}!Graph@{Graph}}
+\doxysubsubsection{\texorpdfstring{n}{n}}
+{\footnotesize\ttfamily int Graph\+::n}
+
+\mbox{\Hypertarget{class_graph_a71b5e16eb9e0670fea3ecee3526abb41}\label{class_graph_a71b5e16eb9e0670fea3ecee3526abb41}} 
+\index{Graph@{Graph}!nodes@{nodes}}
+\index{nodes@{nodes}!Graph@{Graph}}
+\doxysubsubsection{\texorpdfstring{nodes}{nodes}}
+{\footnotesize\ttfamily vector$<$Node$>$ Graph\+::nodes}
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+DEV/2022/\+DA-\/2.\+0/\+Tests/\mbox{\hyperlink{graph_8h}{graph.\+h}}\item 
+C\+:/\+DEV/2022/\+DA-\/2.\+0/\+Tests/\mbox{\hyperlink{graph_8cpp}{graph.\+cpp}}\end{DoxyCompactItemize}

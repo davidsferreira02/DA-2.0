@@ -1,0 +1,84 @@
+\hypertarget{graph_8h_source}{}\doxysection{graph.\+h}
+\label{graph_8h_source}\index{C:/DEV/2022/DA-\/2.0/Tests/graph.h@{C:/DEV/2022/DA-\/2.0/Tests/graph.h}}
+\mbox{\hyperlink{graph_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{preprocessor}{\#ifndef \_GRAPH\_H\_}}
+\DoxyCodeLine{2 \textcolor{preprocessor}{\#define \_GRAPH\_H\_}}
+\DoxyCodeLine{3 }
+\DoxyCodeLine{4 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{min_heap_8h}{minHeap.h}}"{}}}
+\DoxyCodeLine{5 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{max_heap_8h}{maxHeap.h}}"{}}}
+\DoxyCodeLine{6 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{max_heap__pair_8h}{maxHeap\_pair.h}}"{}}}
+\DoxyCodeLine{7 \textcolor{preprocessor}{\#include <vector>}}
+\DoxyCodeLine{8 \textcolor{preprocessor}{\#include <list>}}
+\DoxyCodeLine{9 \textcolor{preprocessor}{\#include <iostream>}}
+\DoxyCodeLine{10 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{_paths_8h}{Paths.h}}"{}}}
+\DoxyCodeLine{11 \textcolor{preprocessor}{\#include <map>}}
+\DoxyCodeLine{12 \textcolor{preprocessor}{\#include <utility>}}
+\DoxyCodeLine{13 }
+\DoxyCodeLine{14 \textcolor{keyword}{using namespace }std;}
+\DoxyCodeLine{15 }
+\DoxyCodeLine{16 \textcolor{keyword}{class }\mbox{\hyperlink{class_paths}{Paths}};}
+\DoxyCodeLine{17 }
+\DoxyCodeLine{18 \textcolor{keyword}{class }\mbox{\hyperlink{class_graph}{Graph}} \{}
+\DoxyCodeLine{19     \textcolor{keyword}{struct }Edge \{}
+\DoxyCodeLine{20         \textcolor{keywordtype}{int} dest;   \textcolor{comment}{// Destination node}}
+\DoxyCodeLine{21         \textcolor{keywordtype}{int} capacity; \textcolor{comment}{// An integer capacity}}
+\DoxyCodeLine{22         \textcolor{keywordtype}{int} initialCapacity;}
+\DoxyCodeLine{23         \textcolor{keywordtype}{int} duration; \textcolor{comment}{//}}
+\DoxyCodeLine{24     \};}
+\DoxyCodeLine{25 }
+\DoxyCodeLine{26     \textcolor{keyword}{struct }Node \{}
+\DoxyCodeLine{27         vector<Edge> adj; \textcolor{comment}{// The list of outgoing edges (to adjacent nodes)}}
+\DoxyCodeLine{28         \textcolor{keywordtype}{int} dist;}
+\DoxyCodeLine{29         \textcolor{keywordtype}{int} capacity; \textcolor{comment}{//used in path of maximum capacity}}
+\DoxyCodeLine{30         \textcolor{keywordtype}{int} predNode;}
+\DoxyCodeLine{31         \textcolor{keywordtype}{int} predEdge;}
+\DoxyCodeLine{32         \textcolor{keywordtype}{bool} visited;}
+\DoxyCodeLine{33         \textcolor{keywordtype}{int} \mbox{\hyperlink{class_graph_a8e5d1bb4cc426858e41877d2dd482737}{earliestStart}};}
+\DoxyCodeLine{34         \textcolor{keywordtype}{int} GrauE;}
+\DoxyCodeLine{35         \textcolor{keywordtype}{int} \mbox{\hyperlink{class_graph_aaadba8c05d5214c8a52a5c1caf4d1995}{latestFinish}};}
+\DoxyCodeLine{36         \textcolor{keywordtype}{int} GrauS;}
+\DoxyCodeLine{37     \};}
+\DoxyCodeLine{38 \textcolor{keyword}{public}:}
+\DoxyCodeLine{39     \textcolor{keywordtype}{int} \mbox{\hyperlink{class_graph_a81a76a428e630453ef019a15b9092967}{n}};              \textcolor{comment}{// Graph size (vertices are numbered from 1 to n)}}
+\DoxyCodeLine{40     \textcolor{keywordtype}{bool} \mbox{\hyperlink{class_graph_a60baa846929049c84b7e50ffb5f401e8}{hasDir}};        \textcolor{comment}{// false: undirect; true: directed}}
+\DoxyCodeLine{41     vector<Node> \mbox{\hyperlink{class_graph_a71b5e16eb9e0670fea3ecee3526abb41}{nodes}}; \textcolor{comment}{// The list of nodes being represented}}
+\DoxyCodeLine{42 }
+\DoxyCodeLine{43 }
+\DoxyCodeLine{44 \textcolor{keyword}{private}:}
+\DoxyCodeLine{48     \textcolor{keywordtype}{void} resetNodePathingValues();}
+\DoxyCodeLine{56     vector<int> backtrace(\textcolor{keywordtype}{int} start, \textcolor{keywordtype}{int} end);}
+\DoxyCodeLine{57 }
+\DoxyCodeLine{58 \textcolor{keyword}{public}:}
+\DoxyCodeLine{65     \mbox{\hyperlink{class_graph_a18b4f6dec368300991b68dd75e39a5e9}{Graph}}(\textcolor{keywordtype}{int} \mbox{\hyperlink{class_graph_a71b5e16eb9e0670fea3ecee3526abb41}{nodes}}, \textcolor{keywordtype}{bool} dir = \textcolor{keyword}{false});}
+\DoxyCodeLine{66     \textcolor{keywordtype}{int} \mbox{\hyperlink{class_graph_ab7d965333f0ae9e6727676db3224ec4b}{getSize}}();}
+\DoxyCodeLine{75     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_graph_ac3157a04ab5d808f5bc15823827c744e}{addEdge}}(\textcolor{keywordtype}{int} src, \textcolor{keywordtype}{int} dest, \textcolor{keywordtype}{int} capacity, \textcolor{keywordtype}{int} duration);}
+\DoxyCodeLine{79     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_graph_a5ac05db53839e72af76cdb2bafe88b77}{printGraph}}();}
+\DoxyCodeLine{88     vector<int> \mbox{\hyperlink{class_graph_abd7519e255c93c133cff2e396e450349}{bfs}}(\textcolor{keywordtype}{int} v, \textcolor{keywordtype}{int} fv);}
+\DoxyCodeLine{96     vector<int> \mbox{\hyperlink{class_graph_a1249478db7cfca87025fa941fec72db6}{backtraceNode}}(\textcolor{keywordtype}{int} start, \textcolor{keywordtype}{int} end);}
+\DoxyCodeLine{105     vector<int> \mbox{\hyperlink{class_graph_ad5eb4743271ef1af85276708ce87d467}{dijkstraPath}}(\textcolor{keywordtype}{int} sNode, \textcolor{keywordtype}{int} endNode);}
+\DoxyCodeLine{113     \textcolor{keywordtype}{int} \mbox{\hyperlink{class_graph_a8d8a81ed3b47f7bb9f1d63a07def5dbf}{getMaxFlowForPath}}(vector<int> path, \textcolor{keywordtype}{int} start);}
+\DoxyCodeLine{121     \textcolor{keywordtype}{int} \mbox{\hyperlink{class_graph_adae41b054ee42d9d7e5d74ec45eb1e57}{getOtherEdge}}(\textcolor{keywordtype}{int} srcNode, \textcolor{keywordtype}{int} srcEdge);}
+\DoxyCodeLine{128     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_graph_a1285e2cd97df6ec36ad131defbf55590}{printPaths}}(\textcolor{keywordtype}{int} start, \textcolor{keywordtype}{int} end);}
+\DoxyCodeLine{137     \textcolor{keywordtype}{bool} \mbox{\hyperlink{class_graph_ac7b7b5550b548902ffece87f85ef0e17}{FordFulkerson}}(\textcolor{keywordtype}{int} start, \textcolor{keywordtype}{int} end);}
+\DoxyCodeLine{142     \mbox{\hyperlink{class_graph}{Graph}}* \mbox{\hyperlink{class_graph_adb1833e6559b122570a08f44e9637e4b}{getFulkersonSolution}}();}
+\DoxyCodeLine{149     \mbox{\hyperlink{class_paths}{Paths}}* \mbox{\hyperlink{class_graph_a91da9f786a6dc9ca9d6a05a861a098de}{getPossiblePaths}}(\textcolor{keywordtype}{int} start, \textcolor{keywordtype}{int} end);}
+\DoxyCodeLine{150 }
+\DoxyCodeLine{154     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_graph_a42ebcf269ed6a72e275e7f0a63fe047c}{addOppositeEdges}}();}
+\DoxyCodeLine{159     vector<int> \mbox{\hyperlink{class_graph_a9dc7918bca4da94a1cb0fff0e25633ba}{resetEarliestStartValues}}();}
+\DoxyCodeLine{165     \textcolor{keywordtype}{int} \mbox{\hyperlink{class_graph_a8e5d1bb4cc426858e41877d2dd482737}{earliestStart}}(\textcolor{keywordtype}{int} end);}
+\DoxyCodeLine{172     \textcolor{keywordtype}{bool} \mbox{\hyperlink{class_graph_a3877d34f266236503c14865ad9391ccd}{hasEdge}}(\textcolor{keywordtype}{int} src, \textcolor{keywordtype}{int} dest);}
+\DoxyCodeLine{178     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_graph_aa5c7e678d02d8df2b02b54371188a129}{addEdgesToShorterGraph}}(\mbox{\hyperlink{class_graph}{Graph}}* g, \textcolor{keywordtype}{int} node);}
+\DoxyCodeLine{184     \mbox{\hyperlink{class_graph}{Graph}}* \mbox{\hyperlink{class_graph_a0d2dbefba0df3737e260dc3d92ada011}{getGraphForStart}}(\textcolor{keywordtype}{int} start);}
+\DoxyCodeLine{189     vector<int> \mbox{\hyperlink{class_graph_ada0ba3eade2c4dff32d1a5b6e9576a98}{resetLatestFinishValues}}();}
+\DoxyCodeLine{194     \textcolor{keywordtype}{int} \mbox{\hyperlink{class_graph_aaadba8c05d5214c8a52a5c1caf4d1995}{latestFinish}}();}
+\DoxyCodeLine{198     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_graph_a63729dc836b7324cabd9439210b2c96f}{showWaitingTimes}}();}
+\DoxyCodeLine{207     vector<int> \mbox{\hyperlink{class_graph_af4ed5328624a1fe5ebbea296ec8c90ee}{pathMaximumCapacity}}(\textcolor{keywordtype}{int} start, \textcolor{keywordtype}{int} end);}
+\DoxyCodeLine{213     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_graph_a64172ef95e1368d4f4799a141be700b4}{pathCapacityAndStops}}(\textcolor{keywordtype}{int} start, \textcolor{keywordtype}{int} end);}
+\DoxyCodeLine{219     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_graph_a0e21800a95837e0a41f0c7eea2a5fa39}{allPathsCapacityAndStops}}(\textcolor{keywordtype}{int} start, \textcolor{keywordtype}{int} end);}
+\DoxyCodeLine{232     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_graph_a572ea6e36a231f16780d6015e7484215}{allPathsCapacityAndStopsUtil}}(\textcolor{keywordtype}{int} start, \textcolor{keywordtype}{int} u, \textcolor{keywordtype}{int} d, vector<int> \&path, \textcolor{keywordtype}{int}\& path\_index, \textcolor{keywordtype}{int} minFlow, \textcolor{keywordtype}{int} maxStops, map<int, int>\& solution);}
+\DoxyCodeLine{233 \};}
+\DoxyCodeLine{234 }
+\DoxyCodeLine{235 \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

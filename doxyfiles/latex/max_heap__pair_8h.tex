@@ -1,0 +1,65 @@
+\hypertarget{max_heap__pair_8h}{}\doxysection{C\+:/\+DEV/2022/\+DA-\/2.0/\+Tests/max\+Heap\+\_\+pair.h File Reference}
+\label{max_heap__pair_8h}\index{C:/DEV/2022/DA-\/2.0/Tests/maxHeap\_pair.h@{C:/DEV/2022/DA-\/2.0/Tests/maxHeap\_pair.h}}
+{\ttfamily \#include $<$cstdint$>$}\newline
+{\ttfamily \#include $<$utility$>$}\newline
+{\ttfamily \#include $<$unordered\+\_\+map$>$}\newline
+{\ttfamily \#include $<$vector$>$}\newline
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structpair__hash}{pair\+\_\+hash}}
+\item 
+class \mbox{\hyperlink{class_max_heap_pair}{Max\+Heap\+Pair}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{max_heap__pair_8h_a25d5ae2e52c533b5f27895fcf7a4ea95}{LEFT}}(i)~(2$\ast$(i))
+\item 
+\#define \mbox{\hyperlink{max_heap__pair_8h_a134d4f19a207929c1e9716743771ae5a}{RIGHT}}(i)~(2$\ast$(i)+1)
+\item 
+\#define \mbox{\hyperlink{max_heap__pair_8h_a91004761621b8ef1c66f3601988fde7c}{PARENT}}(i)~((i)/2)
+\end{DoxyCompactItemize}
+\doxysubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+using \mbox{\hyperlink{max_heap__pair_8h_a8de5abb3da3538c54b33ac108e1c6348}{Pair}} = pair$<$ int, int $>$
+\item 
+using \mbox{\hyperlink{max_heap__pair_8h_a808b5d270c8a1dbbcaebd785f7c220ce}{Unordered\+\_\+map}} = unordered\+\_\+map$<$ \mbox{\hyperlink{max_heap__pair_8h_a8de5abb3da3538c54b33ac108e1c6348}{Pair}}, int, \mbox{\hyperlink{structpair__hash}{pair\+\_\+hash}} $>$
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{max_heap__pair_8h_a25d5ae2e52c533b5f27895fcf7a4ea95}\label{max_heap__pair_8h_a25d5ae2e52c533b5f27895fcf7a4ea95}} 
+\index{maxHeap\_pair.h@{maxHeap\_pair.h}!LEFT@{LEFT}}
+\index{LEFT@{LEFT}!maxHeap\_pair.h@{maxHeap\_pair.h}}
+\doxysubsubsection{\texorpdfstring{LEFT}{LEFT}}
+{\footnotesize\ttfamily \#define LEFT(\begin{DoxyParamCaption}\item[{}]{i }\end{DoxyParamCaption})~(2$\ast$(i))}
+
+\mbox{\Hypertarget{max_heap__pair_8h_a91004761621b8ef1c66f3601988fde7c}\label{max_heap__pair_8h_a91004761621b8ef1c66f3601988fde7c}} 
+\index{maxHeap\_pair.h@{maxHeap\_pair.h}!PARENT@{PARENT}}
+\index{PARENT@{PARENT}!maxHeap\_pair.h@{maxHeap\_pair.h}}
+\doxysubsubsection{\texorpdfstring{PARENT}{PARENT}}
+{\footnotesize\ttfamily \#define PARENT(\begin{DoxyParamCaption}\item[{}]{i }\end{DoxyParamCaption})~((i)/2)}
+
+\mbox{\Hypertarget{max_heap__pair_8h_a134d4f19a207929c1e9716743771ae5a}\label{max_heap__pair_8h_a134d4f19a207929c1e9716743771ae5a}} 
+\index{maxHeap\_pair.h@{maxHeap\_pair.h}!RIGHT@{RIGHT}}
+\index{RIGHT@{RIGHT}!maxHeap\_pair.h@{maxHeap\_pair.h}}
+\doxysubsubsection{\texorpdfstring{RIGHT}{RIGHT}}
+{\footnotesize\ttfamily \#define RIGHT(\begin{DoxyParamCaption}\item[{}]{i }\end{DoxyParamCaption})~(2$\ast$(i)+1)}
+
+
+
+\doxysubsection{Typedef Documentation}
+\mbox{\Hypertarget{max_heap__pair_8h_a8de5abb3da3538c54b33ac108e1c6348}\label{max_heap__pair_8h_a8de5abb3da3538c54b33ac108e1c6348}} 
+\index{maxHeap\_pair.h@{maxHeap\_pair.h}!Pair@{Pair}}
+\index{Pair@{Pair}!maxHeap\_pair.h@{maxHeap\_pair.h}}
+\doxysubsubsection{\texorpdfstring{Pair}{Pair}}
+{\footnotesize\ttfamily using \mbox{\hyperlink{max_heap__pair_8h_a8de5abb3da3538c54b33ac108e1c6348}{Pair}} =  pair$<$int, int$>$}
+
+\mbox{\Hypertarget{max_heap__pair_8h_a808b5d270c8a1dbbcaebd785f7c220ce}\label{max_heap__pair_8h_a808b5d270c8a1dbbcaebd785f7c220ce}} 
+\index{maxHeap\_pair.h@{maxHeap\_pair.h}!Unordered\_map@{Unordered\_map}}
+\index{Unordered\_map@{Unordered\_map}!maxHeap\_pair.h@{maxHeap\_pair.h}}
+\doxysubsubsection{\texorpdfstring{Unordered\_map}{Unordered\_map}}
+{\footnotesize\ttfamily using \mbox{\hyperlink{max_heap__pair_8h_a808b5d270c8a1dbbcaebd785f7c220ce}{Unordered\+\_\+map}} =  unordered\+\_\+map$<$\mbox{\hyperlink{max_heap__pair_8h_a8de5abb3da3538c54b33ac108e1c6348}{Pair}}, int, \mbox{\hyperlink{structpair__hash}{pair\+\_\+hash}}$>$}
+

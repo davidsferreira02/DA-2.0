@@ -1,0 +1,84 @@
+\hypertarget{class_paths}{}\doxysection{Paths Class Reference}
+\label{class_paths}\index{Paths@{Paths}}
+
+
+{\ttfamily \#include $<$Paths.\+h$>$}
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_paths_a6d135fd4b8af08a52627736ba5f705e1}{Paths}} ()
+\item 
+void \mbox{\hyperlink{class_paths_a46429bfe56d52ca5c6be5caf91ec3629}{add\+Path}} (vector$<$ int $>$ nodes, int flow)
+\item 
+int \mbox{\hyperlink{class_paths_a0f2505e31b3db003ea14c7dbf65fed5f}{get\+Max\+Flow}} ()
+\item 
+void \mbox{\hyperlink{class_paths_a7d0c1875e87dab5100c806697d4cbac3}{fit\+NPeople}} (int n)
+\item 
+void \mbox{\hyperlink{class_paths_a8b34969383fca84780b5e370610d5d37}{add\+NPeople}} (int n)
+\item 
+bool \mbox{\hyperlink{class_paths_ab4bcf6afac0142f355782282cd5bc8ff}{fit\+NPeople}} (int n, bool add)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_paths_a6d135fd4b8af08a52627736ba5f705e1}\label{class_paths_a6d135fd4b8af08a52627736ba5f705e1}} 
+\index{Paths@{Paths}!Paths@{Paths}}
+\index{Paths@{Paths}!Paths@{Paths}}
+\doxysubsubsection{\texorpdfstring{Paths()}{Paths()}}
+{\footnotesize\ttfamily Paths\+::\+Paths (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_paths_a8b34969383fca84780b5e370610d5d37}\label{class_paths_a8b34969383fca84780b5e370610d5d37}} 
+\index{Paths@{Paths}!addNPeople@{addNPeople}}
+\index{addNPeople@{addNPeople}!Paths@{Paths}}
+\doxysubsubsection{\texorpdfstring{addNPeople()}{addNPeople()}}
+{\footnotesize\ttfamily void Paths\+::add\+NPeople (\begin{DoxyParamCaption}\item[{int}]{n }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_paths_a46429bfe56d52ca5c6be5caf91ec3629}\label{class_paths_a46429bfe56d52ca5c6be5caf91ec3629}} 
+\index{Paths@{Paths}!addPath@{addPath}}
+\index{addPath@{addPath}!Paths@{Paths}}
+\doxysubsubsection{\texorpdfstring{addPath()}{addPath()}}
+{\footnotesize\ttfamily void Paths\+::add\+Path (\begin{DoxyParamCaption}\item[{vector$<$ int $>$}]{nodes,  }\item[{int}]{flow }\end{DoxyParamCaption})}
+
+Add a path to the vector of paths \mbox{\Hypertarget{class_paths_a7d0c1875e87dab5100c806697d4cbac3}\label{class_paths_a7d0c1875e87dab5100c806697d4cbac3}} 
+\index{Paths@{Paths}!fitNPeople@{fitNPeople}}
+\index{fitNPeople@{fitNPeople}!Paths@{Paths}}
+\doxysubsubsection{\texorpdfstring{fitNPeople()}{fitNPeople()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily void Paths\+::fit\+NPeople (\begin{DoxyParamCaption}\item[{int}]{n }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_paths_ab4bcf6afac0142f355782282cd5bc8ff}\label{class_paths_ab4bcf6afac0142f355782282cd5bc8ff}} 
+\index{Paths@{Paths}!fitNPeople@{fitNPeople}}
+\index{fitNPeople@{fitNPeople}!Paths@{Paths}}
+\doxysubsubsection{\texorpdfstring{fitNPeople()}{fitNPeople()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily bool Paths\+::fit\+NPeople (\begin{DoxyParamCaption}\item[{int}]{n,  }\item[{bool}]{add }\end{DoxyParamCaption})}
+
+Add n people to the path
+
+
+\begin{DoxyParams}{Parameters}
+{\em n} & Number of people \\
+\hline
+{\em add} & Boolean -\/ True if it is to add, false if it is the first time using the function \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True if it was possible, false otherwise 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_paths_a0f2505e31b3db003ea14c7dbf65fed5f}\label{class_paths_a0f2505e31b3db003ea14c7dbf65fed5f}} 
+\index{Paths@{Paths}!getMaxFlow@{getMaxFlow}}
+\index{getMaxFlow@{getMaxFlow}!Paths@{Paths}}
+\doxysubsubsection{\texorpdfstring{getMaxFlow()}{getMaxFlow()}}
+{\footnotesize\ttfamily int Paths\+::get\+Max\+Flow (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Get a path\textquotesingle{}s max flow \begin{DoxyReturn}{Returns}
+Integer representing the path maximum capacity 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+DEV/2022/\+DA-\/2.\+0/\+Tests/\mbox{\hyperlink{_paths_8h}{Paths.\+h}}\item 
+C\+:/\+DEV/2022/\+DA-\/2.\+0/\+Tests/\mbox{\hyperlink{_paths_8cpp}{Paths.\+cpp}}\end{DoxyCompactItemize}

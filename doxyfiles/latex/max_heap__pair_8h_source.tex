@@ -1,0 +1,61 @@
+\hypertarget{max_heap__pair_8h_source}{}\doxysection{max\+Heap\+\_\+pair.\+h}
+\label{max_heap__pair_8h_source}\index{C:/DEV/2022/DA-\/2.0/Tests/maxHeap\_pair.h@{C:/DEV/2022/DA-\/2.0/Tests/maxHeap\_pair.h}}
+\mbox{\hyperlink{max_heap__pair_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{comment}{//}}
+\DoxyCodeLine{2 \textcolor{comment}{// Created by User on 24/05/2022.}}
+\DoxyCodeLine{3 \textcolor{comment}{//}}
+\DoxyCodeLine{4 }
+\DoxyCodeLine{5 \textcolor{preprocessor}{\#ifndef DA\_2\_0\_MAXHEAP\_PAIR\_H}}
+\DoxyCodeLine{6 \textcolor{preprocessor}{\#define DA\_2\_0\_MAXHEAP\_PAIR\_H}}
+\DoxyCodeLine{7 }
+\DoxyCodeLine{8 \textcolor{preprocessor}{\#include <cstdint>}}
+\DoxyCodeLine{9 \textcolor{preprocessor}{\#include <utility>}}
+\DoxyCodeLine{10 \textcolor{preprocessor}{\#include <unordered\_map>}}
+\DoxyCodeLine{11 \textcolor{preprocessor}{\#include <vector>}}
+\DoxyCodeLine{12 }
+\DoxyCodeLine{13 \textcolor{preprocessor}{\#define LEFT(i) (2*(i))}}
+\DoxyCodeLine{14 \textcolor{preprocessor}{\#define RIGHT(i) (2*(i)+1)}}
+\DoxyCodeLine{15 \textcolor{preprocessor}{\#define PARENT(i) ((i)/2)}}
+\DoxyCodeLine{16 }
+\DoxyCodeLine{17 \textcolor{keyword}{using namespace }std;}
+\DoxyCodeLine{18 }
+\DoxyCodeLine{19 \textcolor{keyword}{struct }\mbox{\hyperlink{structpair__hash}{pair\_hash}} \{}
+\DoxyCodeLine{20     \textcolor{keywordtype}{size\_t} \mbox{\hyperlink{structpair__hash_aab298461b0580c990f5cbdfe3f7e74bc}{operator () }}(\textcolor{keyword}{const} pair<int, int> \&p)\textcolor{keyword}{ const}\{}
+\DoxyCodeLine{21         \textcolor{keywordflow}{return} (\textcolor{keywordtype}{size\_t}) p.first << 32 | (\textcolor{keywordtype}{unsigned} int) p.second;}
+\DoxyCodeLine{22     \}}
+\DoxyCodeLine{23 \};}
+\DoxyCodeLine{24 }
+\DoxyCodeLine{25 }
+\DoxyCodeLine{26 \textcolor{keyword}{using} \mbox{\hyperlink{max_heap__pair_8h_a8de5abb3da3538c54b33ac108e1c6348}{Pair}} = pair<int, int>;}
+\DoxyCodeLine{27 \textcolor{keyword}{using} \mbox{\hyperlink{max_heap__pair_8h_a808b5d270c8a1dbbcaebd785f7c220ce}{Unordered\_map}} = unordered\_map<Pair, int, pair\_hash>;}
+\DoxyCodeLine{28 }
+\DoxyCodeLine{32 \textcolor{keyword}{class }\mbox{\hyperlink{class_max_heap_pair}{MaxHeapPair}} \{}
+\DoxyCodeLine{33     \textcolor{keyword}{struct }Node \{ \textcolor{comment}{// An element of the heap: a pair (key, value)}}
+\DoxyCodeLine{34         \mbox{\hyperlink{max_heap__pair_8h_a8de5abb3da3538c54b33ac108e1c6348}{Pair}} key;}
+\DoxyCodeLine{35         \textcolor{keywordtype}{int} value;}
+\DoxyCodeLine{36     \};}
+\DoxyCodeLine{37 }
+\DoxyCodeLine{38     \textcolor{keywordtype}{int} size;                  \textcolor{comment}{// Number of elements in heap}}
+\DoxyCodeLine{39     \textcolor{keywordtype}{int} maxSize;               \textcolor{comment}{// Maximum number of elements in heap}}
+\DoxyCodeLine{40     vector<Node> a;            \textcolor{comment}{// The heap array}}
+\DoxyCodeLine{41     \mbox{\hyperlink{max_heap__pair_8h_a808b5d270c8a1dbbcaebd785f7c220ce}{Unordered\_map}} pos; \textcolor{comment}{// maps a key into its position on the array a}}
+\DoxyCodeLine{42     \textcolor{keyword}{const} \mbox{\hyperlink{max_heap__pair_8h_a8de5abb3da3538c54b33ac108e1c6348}{Pair}} KEY\_NOT\_FOUND;}
+\DoxyCodeLine{43 }
+\DoxyCodeLine{44     \textcolor{keywordtype}{void} upHeap(\textcolor{keywordtype}{int} i);}
+\DoxyCodeLine{45     \textcolor{keywordtype}{void} downHeap(\textcolor{keywordtype}{int} i);}
+\DoxyCodeLine{46     \textcolor{keywordtype}{void} swap(\textcolor{keywordtype}{int} i1, \textcolor{keywordtype}{int} i2);}
+\DoxyCodeLine{47 }
+\DoxyCodeLine{48 \textcolor{keyword}{public}:}
+\DoxyCodeLine{49     \mbox{\hyperlink{class_max_heap_pair_a2e356427250563d2c60f7150edf78fb4}{MaxHeapPair}}(\textcolor{keywordtype}{int} n, \textcolor{keyword}{const} \mbox{\hyperlink{max_heap__pair_8h_a8de5abb3da3538c54b33ac108e1c6348}{Pair}}\& notFound); \textcolor{comment}{// Create a Max-\/heap for a max of n pairs (K,V) with notFound returned when empty}}
+\DoxyCodeLine{50     \textcolor{keywordtype}{int} \mbox{\hyperlink{class_max_heap_pair_a073a21b069ae1232eeee5ae1566a6d5e}{getSize}}();              \textcolor{comment}{// Return number of elements in the heap}}
+\DoxyCodeLine{51     \textcolor{keywordtype}{int} \mbox{\hyperlink{class_max_heap_pair_ac69ab5e26a5d2fc8e1956a7f9a3bedfd}{getCapacityByKey}}(\textcolor{keyword}{const} \mbox{\hyperlink{max_heap__pair_8h_a8de5abb3da3538c54b33ac108e1c6348}{Pair}}\& key);}
+\DoxyCodeLine{52     \textcolor{keywordtype}{bool} \mbox{\hyperlink{class_max_heap_pair_ae45fd26d51ef7cd5f601f701d3c9cfc0}{hasKey}}(\textcolor{keyword}{const} \mbox{\hyperlink{max_heap__pair_8h_a8de5abb3da3538c54b33ac108e1c6348}{Pair}}\& key);  \textcolor{comment}{// Heap has key?}}
+\DoxyCodeLine{53     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_max_heap_pair_a4c09236f484cfce1893e50f7da10908a}{insert}}(\textcolor{keyword}{const} \mbox{\hyperlink{max_heap__pair_8h_a8de5abb3da3538c54b33ac108e1c6348}{Pair}}\& key, \textcolor{keyword}{const} \textcolor{keywordtype}{int}\& value);      \textcolor{comment}{// Insert (key, value) on the heap}}
+\DoxyCodeLine{54     \textcolor{keywordtype}{bool} \mbox{\hyperlink{class_max_heap_pair_ad2465c88b3f58872f128de1f64472080}{increaseKey}}(\textcolor{keyword}{const} \mbox{\hyperlink{max_heap__pair_8h_a8de5abb3da3538c54b33ac108e1c6348}{Pair}}\& key, \textcolor{keyword}{const} \textcolor{keywordtype}{int}\& value); \textcolor{comment}{// Increase value of key}}
+\DoxyCodeLine{55     pair<Pair, int> \mbox{\hyperlink{class_max_heap_pair_a765e866b6a9ce393bb42c4ba8ed7925c}{removeMax}}(); \textcolor{comment}{// remove and return key with smaller value}}
+\DoxyCodeLine{56 \};}
+\DoxyCodeLine{57 }
+\DoxyCodeLine{58 \textcolor{preprocessor}{\#endif }\textcolor{comment}{//DA\_2\_0\_MAXHEAP\_PAIR\_H}}
+
+\end{DoxyCode}

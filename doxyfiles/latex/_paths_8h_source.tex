@@ -1,0 +1,37 @@
+\hypertarget{_paths_8h_source}{}\doxysection{Paths.\+h}
+\label{_paths_8h_source}\index{C:/DEV/2022/DA-\/2.0/Tests/Paths.h@{C:/DEV/2022/DA-\/2.0/Tests/Paths.h}}
+\mbox{\hyperlink{_paths_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{preprocessor}{\#ifndef DA\_2\_0\_PATHS\_H}}
+\DoxyCodeLine{2 \textcolor{preprocessor}{\#define DA\_2\_0\_PATHS\_H}}
+\DoxyCodeLine{3 }
+\DoxyCodeLine{4 \textcolor{preprocessor}{\#include <fstream>}}
+\DoxyCodeLine{5 \textcolor{preprocessor}{\#include <string>}}
+\DoxyCodeLine{6 \textcolor{preprocessor}{\#include <sstream>}}
+\DoxyCodeLine{7 \textcolor{preprocessor}{\#include <utility>}}
+\DoxyCodeLine{8 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{graph_8h}{graph.h}}"{}}}
+\DoxyCodeLine{9 }
+\DoxyCodeLine{10 \textcolor{keyword}{using namespace }std;}
+\DoxyCodeLine{11 }
+\DoxyCodeLine{12 \textcolor{keyword}{class }\mbox{\hyperlink{class_paths}{Paths}} \{}
+\DoxyCodeLine{13     \textcolor{keyword}{struct }Path \{}
+\DoxyCodeLine{14         vector<int> nodes;}
+\DoxyCodeLine{15         \textcolor{keywordtype}{int} flow;}
+\DoxyCodeLine{16         \textcolor{keywordtype}{int} freeFlow;}
+\DoxyCodeLine{17     \};}
+\DoxyCodeLine{18 }
+\DoxyCodeLine{19     vector<Path> paths;}
+\DoxyCodeLine{20     \textcolor{keywordtype}{int} maxFlow;}
+\DoxyCodeLine{21     \textcolor{keywordtype}{int} occupied;}
+\DoxyCodeLine{22 \textcolor{keyword}{public}:}
+\DoxyCodeLine{23     \mbox{\hyperlink{class_paths_a6d135fd4b8af08a52627736ba5f705e1}{Paths}}();}
+\DoxyCodeLine{27     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_paths_a46429bfe56d52ca5c6be5caf91ec3629}{addPath}}(vector<int> nodes, \textcolor{keywordtype}{int} flow);}
+\DoxyCodeLine{32     \textcolor{keywordtype}{int} \mbox{\hyperlink{class_paths_a0f2505e31b3db003ea14c7dbf65fed5f}{getMaxFlow}}();}
+\DoxyCodeLine{33     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_paths_a7d0c1875e87dab5100c806697d4cbac3}{fitNPeople}}(\textcolor{keywordtype}{int} n);}
+\DoxyCodeLine{34     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_paths_a8b34969383fca84780b5e370610d5d37}{addNPeople}}(\textcolor{keywordtype}{int} n);}
+\DoxyCodeLine{42     \textcolor{keywordtype}{bool} \mbox{\hyperlink{class_paths_a7d0c1875e87dab5100c806697d4cbac3}{fitNPeople}}(\textcolor{keywordtype}{int} n, \textcolor{keywordtype}{bool} add);}
+\DoxyCodeLine{43 \};}
+\DoxyCodeLine{44 }
+\DoxyCodeLine{45 \textcolor{preprocessor}{\#endif }\textcolor{comment}{//DA\_2\_0\_PATHS\_H}}
+
+\end{DoxyCode}
