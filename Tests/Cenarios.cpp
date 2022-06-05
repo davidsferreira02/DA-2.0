@@ -1,10 +1,15 @@
 #include "Cenarios.h"
 
 void Cenarios::cenario1_1(Graph* g) {
-    g->pathMaximumCapacity(1,g->getSize());
+    vector<int> path = g->pathMaximumCapacity(1,g->getSize());
+    cout << "Capacity: " << g->nodes[g->n].capacity << endl;
+    for(auto node : path) {
+        cout << node << " ";
+    }
 }
 
 void Cenarios::cenario1_2(Graph* g) {
+    cout << "Optimal solutions" << endl;
     g->pathCapacityAndStops(1, g->getSize());
 }
 

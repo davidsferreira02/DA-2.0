@@ -110,7 +110,7 @@ public:
     int latestFinish();
     void showWaitingTimes();
 
-    int pathMaximumCapacity(int start, int end);
+    vector<int> pathMaximumCapacity(int start, int end);
     void pathCapacityAndStops(int start, int end);
     void allPathsCapacityAndStops(int start, int end);
     void allPathsCapacityAndStopsUtil(int start, int u, int d, vector<int> &path, int& path_index, int minLimit, int maxLimit, map<int, int>& solution);
