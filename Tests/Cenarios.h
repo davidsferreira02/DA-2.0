@@ -8,6 +8,9 @@
 
 using namespace std;
 
+/*!
+ * Class that handles each scenario
+ */
 class Cenarios {
 public:
     static void cenario1_1(Graph* g);

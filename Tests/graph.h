@@ -87,6 +87,14 @@ public:
      */
     vector<int> bfs(int v, int fv);
     /*!
+     * Go to the previous nodes from the end to the start, using the node attribute predNode
+     *
+     * @param start Starting node
+     * @param end End node
+     * @return Empty vector if there is no path, or the path of nodes otherwise
+     */
+    vector<int> backtraceNode(int start, int end);
+    /*!
      * Finds the minimum path using the dijkstra algorithm
      * Big 0 : O(|E| log|V|) (where V is the number of nodes and E the number of edges)
      *
@@ -94,26 +102,111 @@ public:
      * @param endNode End node
      * @return Vector with the stops between the two nodes
      */
-    vector<int> backtraceNode(int start, int end);
     vector<int> dijkstraPath(int sNode, int endNode);
+    /*!
+     * Get the maximum flow that can go trough a path
+     *
+     * @param path Path of edges
+     * @param start Start node
+     * @return Max Capacity of the path
+     */
     int getMaxFlowForPath(vector<int> path, int start);
+    /*!
+     * Get the edge from the residual graph associated with the given edge
+     *
+     * @param srcNode
+     * @param srcEdge
+     * @return Number of the correspondent edge
+     */
     int getOtherEdge(int srcNode, int srcEdge);
+    /*!
+     * Edmonds-Karp algorithm to find the max flow of the graph
+     * Big O: O(E^2 * V) (where V is the number of nodes and E the number of edges)
+     *
+     * @param start
+     * @param end
+     */
     void FordFulkerson(int start, int end);
+    /*!
+     *
+     * @return Graph with the Edmond-Karp solution
+     */
     Graph* getFulkersonSolution();
+    /*!
+     *
+     * @return Return a collection of all possible paths
+     */
     Paths* getPossiblePaths();
+    /*!
+     * Print paths on the solution graph
+     *
+     * @param start Starting node
+     * @param end End node
+     */
     void printPaths(int start, int end);
-  
-    void addOppositeEdges();
-    vector<int> resetEarliestStartValues();
-    int earliestStart();
-    vector<int> resetLatestFinishValues();
-    int latestFinish();
-    void showWaitingTimes();
 
+    /*!
+     * Add edges in the opposite direction for the residual graph
+     */
+    void addOppositeEdges();
+    /*!
+     * Reset ES values
+     * @return Nodes which their degrees of entry are 0
+     */
+    vector<int> resetEarliestStartValues();
+    /*!
+     *
+     * @return Time of the ES for the finishing node
+     */
+    int earliestStart();
+    /*!
+     * Reset LF values
+     * @return Nodes which their degress of entry are 1
+     */
+    vector<int> resetLatestFinishValues();
+    /*!
+     *
+     * @return Time of LF for the finishing node
+     */
+    int latestFinish();
+    /*!
+     * Print the waiting times in the various nodes
+     */
+    void showWaitingTimes();
+    /*!
+     * Get the path of maximum capacity in a graph
+     * Big O: O((V + E) log2 |V|), (where V is the number of nodes and E the number of edges)
+     *
+     * @param start Starting node
+     * @param end End node
+     * @return Path of nodes
+     */
     vector<int> pathMaximumCapacity(int start, int end);
+    /*!
+     * Retrieve the specificities of the optimal paths in terms of stops and capacity (pareto-optimal solutions)
+     * @param start Starting node
+     * @param end End node
+     */
     void pathCapacityAndStops(int start, int end);
+    /*!
+     * Recursive/brute force solution to find the optimal paths in terms of stops and capacity (pareto-optimal solutions)
+     * @param start Starting node
+     * @param end End node
+     */
     void allPathsCapacityAndStops(int start, int end);
-    void allPathsCapacityAndStopsUtil(int start, int u, int d, vector<int> &path, int& path_index, int minLimit, int maxLimit, map<int, int>& solution);
+    /*!
+     * Helper function to the allPathsCapacityAndStops
+     *
+     * @param start Starting node
+     * @param u Current node
+     * @param d End node
+     * @param path Current path
+     * @param path_index Current index
+     * @param minFlow Bfs flow
+     * @param maxStops CCM stops
+     * @param solution Map with the best flow for each path size
+     */
+    void allPathsCapacityAndStopsUtil(int start, int u, int d, vector<int> &path, int& path_index, int minFlow, int maxStops, map<int, int>& solution);
 };
 
 #endif
