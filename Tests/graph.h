@@ -120,33 +120,33 @@ public:
      */
     int getOtherEdge(int srcNode, int srcEdge);
     /*!
-     * Edmonds-Karp algorithm to find the max flow of the graph
-     * Big O: O(E^2 * V) (where V is the number of nodes and E the number of edges)
-     *
-     * @param start
-     * @param end
-     */
-    void FordFulkerson(int start, int end);
-    /*!
-     *
-     * @return Graph with the Edmond-Karp solution
-     */
-    Graph* getFulkersonSolution();
-    /*!
-     *
-     * @return Return a collection of all possible paths
-     */
-    Paths* getPossiblePaths();
-    /*!
      * Print paths on the solution graph
      *
      * @param start Starting node
      * @param end End node
      */
-    bool FordFulkerson(int start, int end);
-    Graph* getFulkersonSolution();
-    Paths* getPossiblePaths(int start, int end);
     void printPaths(int start, int end);
+    /*!
+    * Edmonds-Karp algorithm to find the max flow of the graph
+    * Big O: O(E^2 * V) (where V is the number of nodes and E the number of edges)
+    *
+    * @param start
+    * @param end
+    * @return True if there is a path, false otherwise
+    */
+    bool FordFulkerson(int start, int end);
+    /*!
+     *
+     * @return Graph with Edmond-Karp solution
+     */
+    Graph* getFulkersonSolution();
+    /*!
+     *
+     * @param start Starting node
+     * @param end End node
+     * @return All paths from the start to the end
+     */
+    Paths* getPossiblePaths(int start, int end);
 
     /*!
      * Add edges in the opposite direction for the residual graph
@@ -159,16 +159,33 @@ public:
     vector<int> resetEarliestStartValues();
     /*!
      *
+     * @param end End node
      * @return Time of the ES for the finishing node
      */
-    int earliestStart();
+    int earliestStart(int end);
+    /*!
+     *
+     * @param src Start node
+     * @param dest End node
+     * @return True if there is a edge between the two nodes
+     */
+    bool hasEdge(int src, int dest);
+    /*!
+     *
+     * @param g Graph to add edges on
+     * @param node Node which edges will be add
+     */
+    void addEdgesToShorterGraph(Graph* g, int node);
+    /*!
+     *
+     * @param start Start node
+     * @return Create a graph with the possible paths
+     */
+    Graph* getGraphForStart(int start);
     /*!
      * Reset LF values
      * @return Nodes which their degress of entry are 1
      */
-    bool hasEdge(int src, int dest);
-    void addEdgesToShorterGraph(Graph* g, int node);
-    Graph* getGraphForStart(int start);
     vector<int> resetLatestFinishValues();
     /*!
      *

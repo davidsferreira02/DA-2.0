@@ -1,15 +1,19 @@
 #include "Cenarios.h"
 
 void Cenarios::cenario1_1(Graph* g, int start, int end) {
-    vector<int> path = g->pathMaximumCapacity(start,end);
-    cout << "Capacity: " << g->nodes[g->n].capacity << endl;
-    for(auto node : path) {
-        cout << node << " ";
+    vector<int> path = g->pathMaximumCapacity(start, end);
+    if (path.size() == 0) { cout << "No path between the two nodes." << endl; }
+    else {
+        cout << "Capacity: " << g->nodes[g->n].capacity << endl;
+
+        for (auto node: path) {
+            cout << node << " ";
+        }
     }
 }
 
 void Cenarios::cenario1_2(Graph* g, int start, int end) {
-    cout << "Optimal solutions" << endl;
+    cout << "Optimal solutions:" << endl;
     g->pathCapacityAndStops(start, end);
 }
 
