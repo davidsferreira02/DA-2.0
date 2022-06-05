@@ -34,30 +34,6 @@ void Graph::resetNodePathingValues() {
     }
 }
 
-/*
-vector<int> Graph::backtrace(int start, int end) {
-    if(nodes[end].predEdge == -1){return {};}
-    vector<int> path = {end};
-    int prevNode,edgeIndex,edgeNum = 0, curNode = end;
-    while (curNode != start){
-        prevNode = nodes[curNode].adj[nodes[curNode].predEdge].dest;
-        for(int i = 0; i < nodes[curNode].adj.size(); i++)
-            if (nodes[curNode].adj[i].dest == prevNode) {
-                edgeNum++;
-                if (i == nodes[curNode].predEdge) break;
-            }
-        for(int i = 0; i < nodes[prevNode].adj.size(); i++)
-            if (nodes[prevNode].adj[i].dest == curNode) {
-                edgeNum--;
-                if (edgeNum == 0) edgeIndex = i;
-            }
-        path.insert(path.begin(),edgeIndex);
-        curNode = prevNode;
-    }
-    return path;
-}
-*/
-
 vector<int> Graph::backtrace(int start, int end) {
     if(nodes[end].predNode== -1){return {};}
     vector<int> path = {};
@@ -111,7 +87,7 @@ vector<int> Graph::bfs(int v, int fv) {
 int Graph::getMaxFlowForPath(vector<int> path, int start) {
     int curNode = start, flow = INT32_MAX;
     Edge curEdge;
-    for( auto e: path) {
+    for (auto e: path) {
         curEdge = nodes[curNode].adj[e];
         if (curEdge.capacity < flow) flow = curEdge.capacity;
         curNode = curEdge.dest;
@@ -203,10 +179,11 @@ void Graph::FordFulkerson(int start, int end) {
     }
 }
 
-void Graph::pathMaximumCapacity(int start, int end){
+int Graph::pathMaximumCapacity(int start, int end){
     MaxHeap<int, int> maxHeap = MaxHeap<int, int>(this->n, -1);
 
     for(int i = 1; i <= n; i++){
+        nodes.at(i).visited = false;
         nodes.at(i).predNode = -1;
         nodes.at(i).capacity = 0;
         maxHeap.insert(i, nodes.at(i).capacity);
@@ -218,6 +195,7 @@ void Graph::pathMaximumCapacity(int start, int end){
         nodes[cNode].visited = true;
 
         for (Edge edge: nodes.at(cNode).adj) {
+            if (edge.capacity == 0) continue;
             if (min(nodes[cNode].capacity, edge.capacity) > nodes[edge.dest].capacity) {
                 nodes[edge.dest].capacity = min(nodes[cNode].capacity, edge.capacity);
                 nodes[edge.dest].predNode = cNode;
@@ -225,13 +203,144 @@ void Graph::pathMaximumCapacity(int start, int end){
             }
         }
     }
-
     cout << "Capacity: " << nodes[end].capacity << endl;
-    for(auto node : backtraceNode(start, end)){
+    vector<int> path = backtraceNode(start, end);
+    for(auto node : path) {
         cout << node << " ";
     }
 
+    return path.size();
 }
+
+
+void Graph::pathCapacityAndStops(int start, int end){
+
+    int maxLimit = pathMaximumCapacity(start, end) - 1;
+    vector<int> pBfs = bfs(start, end);
+    int minLimit = pBfs.size();
+    int minFlow = getMaxFlowForPath(pBfs, start);
+
+    map<int, int> solution;
+    for(int i = minLimit; i <= maxLimit; i++){
+        solution[i] = minFlow;
+    }
+
+
+    MaxHeapPair maxHeap = MaxHeapPair(this->n*10, {-1, -1});
+
+    for (int i = 1; i <= n; i++) {
+        nodes.at(i).dist = 0;
+        nodes.at(i).predNode = -1;
+        nodes.at(i).capacity = 0;
+    }
+    maxHeap.insert({1, 0}, nodes[start].capacity = INT32_MAX);
+
+    while (maxHeap.getSize() > 0) {
+        pair<Pair, int> cPair = maxHeap.removeMax();
+        int cNode = cPair.first.first;
+        int cDist = cPair.first.second;
+        int cCap = cPair.second;
+
+        if(cCap <= solution[cDist]) continue;
+
+        for (Edge edge: nodes.at(cNode).adj) {
+            if(edge.capacity == 0){continue;}
+            if((cDist + 1 == maxLimit) && (edge.dest != end)) continue;
+            if ((min(cCap, edge.capacity) > maxHeap.getCapacityByKey({edge.dest, cDist + 1})) &&
+                    edge.capacity >= solution[cDist]){
+                nodes[edge.dest].capacity = min(nodes[cNode].capacity, edge.capacity);
+                nodes[edge.dest].predNode = cNode;
+                if(edge.dest == end){
+                    if(nodes[edge.dest].capacity > solution[cDist + 1]){
+                        cout << cNode << " " << nodes[edge.dest].capacity << " " << cDist << endl;
+                        solution[cDist + 1] = nodes[edge.dest].capacity;
+                    }
+                }
+                if(!maxHeap.increaseKey({edge.dest, cDist + 1}, nodes[edge.dest].capacity)){
+                    maxHeap.insert({edge.dest, cDist + 1}, nodes[edge.dest].capacity);
+                }
+            }
+        }
+    }
+
+    int min = 0;
+    for(auto const &p : solution){
+        if(p.second > min)
+        {min = p.second;
+            cout << "Switches: " << p.first << " ";
+            cout << "Capacity: " << p.second << endl;}
+    }
+}
+
+
+void Graph::allPathsCapacityAndStops(int start, int end) {
+    vector<int> path;
+
+    int path_index = 0;
+
+    int maxStops = pathMaximumCapacity(start, end) - 1;
+    vector<int> p = bfs(start, end);
+    int minFlow = getMaxFlowForPath(p, start);
+
+    cout << endl;
+    cout << maxStops << " " << p.size()<< endl;
+    cout << minFlow << endl;
+
+    for(int i = 1; i <= n; i++){
+        nodes[i].visited = false;
+    }
+
+    map<int, int> solution;
+    for(int i = p.size(); i <= maxStops; i++){
+        solution[i] = minFlow;
+    }
+
+    allPathsCapacityAndStopsUtil(start, start, end, path, path_index, minFlow, maxStops, solution);
+
+    int min = 0;
+    for(auto const &p : solution){
+        if(p.second > min)
+        {min = p.second;
+        cout << "Switches: " << p.first << " ";
+        cout << "Capacity: " << p.second << endl;}
+    }
+}
+
+void Graph::allPathsCapacityAndStopsUtil(int start, int u, int d, vector<int> &path, int& path_index, int minFlow, int maxStops, map<int, int>&solution){
+    // Mark the current node and store it in path[]
+    nodes[u].visited = true;
+
+    // If current vertex is same as destination, then print
+    // current path[]
+    if (u == d) {
+        int f = getMaxFlowForPath(path, start);
+        if(f > solution[path_index]){
+            solution[path_index] = f;
+        }
+    }
+    else // If current vertex is not destination
+    {
+        // Recur for all the vertices adjacent to current vertex
+        for (int i = 0; i < nodes[u].adj.size();i++) {
+            Edge e = nodes[u].adj[i];
+            if (e.capacity == 0) continue;
+            if (!(nodes[e.dest].visited) && (e.capacity >= minFlow) && (path_index < maxStops) && (e.capacity >= solution[path_index])){
+                path.push_back(i);
+                path_index++;
+                allPathsCapacityAndStopsUtil(start, e.dest, d, path, path_index, minFlow, maxStops, solution);
+            }
+        }
+
+    }
+
+    // Remove current vertex from path[] and mark it as unvisited
+    path.pop_back();
+    path_index--;
+    nodes[u].visited = false;
+}
+
+
+
 
 vector<int> Graph::dijkstraPath(int sNode, int endNode) {
     resetNodePathingValues();
