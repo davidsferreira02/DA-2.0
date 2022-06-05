@@ -143,6 +143,9 @@ public:
      * @param start Starting node
      * @param end End node
      */
+    bool FordFulkerson(int start, int end);
+    Graph* getFulkersonSolution();
+    Paths* getPossiblePaths(int start, int end);
     void printPaths(int start, int end);
 
     /*!
@@ -163,6 +166,9 @@ public:
      * Reset LF values
      * @return Nodes which their degress of entry are 1
      */
+    bool hasEdge(int src, int dest);
+    void addEdgesToShorterGraph(Graph* g, int node);
+    Graph* getGraphForStart(int start);
     vector<int> resetLatestFinishValues();
     /*!
      *

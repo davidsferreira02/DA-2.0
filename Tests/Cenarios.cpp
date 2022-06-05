@@ -1,19 +1,19 @@
 #include "Cenarios.h"
 
-void Cenarios::cenario1_1(Graph* g) {
-    vector<int> path = g->pathMaximumCapacity(1,g->getSize());
+void Cenarios::cenario1_1(Graph* g, int start, int end) {
+    vector<int> path = g->pathMaximumCapacity(start,end);
     cout << "Capacity: " << g->nodes[g->n].capacity << endl;
     for(auto node : path) {
         cout << node << " ";
     }
 }
 
-void Cenarios::cenario1_2(Graph* g) {
+void Cenarios::cenario1_2(Graph* g, int start, int end) {
     cout << "Optimal solutions" << endl;
-    g->pathCapacityAndStops(1, g->getSize());
+    g->pathCapacityAndStops(start, end);
 }
 
-void Cenarios::cenario2_1(Graph* g) {
+void Cenarios::cenario2_1(Graph* g, int start, int end) {
     string s;
     int n;
     while (true) {
@@ -27,9 +27,9 @@ void Cenarios::cenario2_1(Graph* g) {
         }
         break;
     }
-    g->FordFulkerson(1,g->getSize());
+    if (!g->FordFulkerson(start,end)) return;
     Graph* solution = g->getFulkersonSolution();
-    Paths* paths = solution->getPossiblePaths();
+    Paths* paths = solution->getPossiblePaths(start,end);
     paths->fitNPeople(n, false);
 
     char c;
@@ -58,21 +58,25 @@ void Cenarios::cenario2_1(Graph* g) {
 }
 
 
-void Cenarios::cenario2_3(Graph* g) {
-    g->FordFulkerson(1,g->getSize());
+void Cenarios::cenario2_3(Graph* g, int start, int end) {
+    if (!g->FordFulkerson(start,end)) return;
     Graph* solution = g->getFulkersonSolution();
-    solution->printPaths(1,g->getSize());
+    solution->printPaths(start,end);
 }
 
-void Cenarios::cenario2_4(Graph* g) {
-    g->FordFulkerson(1,g->getSize());
+void Cenarios::cenario2_4(Graph* g, int start, int end) {
+    if (start != 1)
+        g = g->getGraphForStart(start);
+    if (!g->FordFulkerson(start,end)) return;
     Graph* g2 = g->getFulkersonSolution();
-    cout << "The group would reunite at " << g2->earliestStart() << endl;
+    cout << "The group would reunite at " << g2->earliestStart(end) << endl;
 }
 
-void Cenarios::cenario2_5(Graph* g) {
-    g->FordFulkerson(1,g->getSize());
+void Cenarios::cenario2_5(Graph* g, int start, int end) {
+    if (start != 1)
+        g = g->getGraphForStart(start);
+    if (!g->FordFulkerson(start,end)) return;
     Graph* g2 = g->getFulkersonSolution();
-    g2->earliestStart();
+    g2->earliestStart(end);
     g2->showWaitingTimes();
 }
