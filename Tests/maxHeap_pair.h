@@ -26,7 +26,9 @@ struct pair_hash {
 using Pair = pair<int, int>;
 using Unordered_map = unordered_map<Pair, int, pair_hash>;
 
-// Binary Max-heap to represent integer keys of type K with values (priorities) of type V
+/*!
+ * Costume MaxHeap that is able to accommodate a Pair as its key
+ */
 class MaxHeapPair {
     struct Node { // An element of the heap: a pair (key, value)
         Pair key;

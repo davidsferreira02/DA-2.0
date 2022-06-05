@@ -12,6 +12,9 @@
 
 using namespace std;
 
+/*!
+ * Read the contents of a test file and populate a graph
+ */
 class ReadFile {
 public:
     static Graph* readViagem(string filename = "in01.txt");
