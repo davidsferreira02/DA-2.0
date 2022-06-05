@@ -212,49 +212,66 @@ int Graph::pathMaximumCapacity(int start, int end){
     return path.size();
 }
 
-/*
+
 void Graph::pathCapacityAndStops(int start, int end){
 
     int maxLimit = pathMaximumCapacity(start, end) - 1;
-    int minLimit = bfsstops(start, end).size() - 1;
+    vector<int> pBfs = bfs(start, end);
+    int minLimit = pBfs.size();
+    int minFlow = getMaxFlowForPath(pBfs, start);
 
-    cout << minLimit << " " << maxLimit << endl;
+    map<int, int> solution;
+    for(int i = minLimit; i <= maxLimit; i++){
+        solution[i] = minFlow;
+    }
 
-    for(int size = minLimit; size <= maxLimit; size++) {
-        MaxHeap<int, int> maxHeap = MaxHeap<int, int>(this->n, -1);
 
-        for (int i = 1; i <= n; i++) {
-            nodes.at(i).dist = 0;
-            nodes.at(i).predNode = -1;
-            nodes.at(i).capacity = 0;
-            maxHeap.insert(i, nodes.at(i).capacity);
-        }
-        maxHeap.increaseKey(start, nodes[start].capacity = INT32_MAX);
+    MaxHeapPair maxHeap = MaxHeapPair(this->n*10, {-1, -1});
 
-        while (maxHeap.getSize() > 0) {
-            int cNode = maxHeap.removeMax();
-            nodes[cNode].visited = true;
+    for (int i = 1; i <= n; i++) {
+        nodes.at(i).dist = 0;
+        nodes.at(i).predNode = -1;
+        nodes.at(i).capacity = 0;
+    }
+    maxHeap.insert({1, 0}, nodes[start].capacity = INT32_MAX);
 
-            for (Edge edge: nodes.at(cNode).adj) {
-                if((nodes[cNode].dist + 1 == size) && (edge.dest != end)) continue;
-                if (min(nodes[cNode].capacity, edge.capacity) > nodes[edge.dest].capacity) {
-                    nodes[edge.dest].capacity = min(nodes[cNode].capacity, edge.capacity);
-                    nodes[edge.dest].predNode = cNode;
-                    maxHeap.increaseKey(edge.dest, nodes[edge.dest].capacity);
+    while (maxHeap.getSize() > 0) {
+        pair<Pair, int> cPair = maxHeap.removeMax();
+        int cNode = cPair.first.first;
+        int cDist = cPair.first.second;
+        int cCap = cPair.second;
+
+        if(cCap <= solution[cDist]) continue;
+
+        for (Edge edge: nodes.at(cNode).adj) {
+            if(edge.capacity == 0){continue;}
+            if((cDist + 1 == maxLimit) && (edge.dest != end)) continue;
+            if ((min(cCap, edge.capacity) > maxHeap.getCapacityByKey({edge.dest, cDist + 1})) &&
+                    edge.capacity >= solution[cDist]){
+                nodes[edge.dest].capacity = min(nodes[cNode].capacity, edge.capacity);
+                nodes[edge.dest].predNode = cNode;
+                if(edge.dest == end){
+                    if(nodes[edge.dest].capacity > solution[cDist + 1]){
+                        cout << cNode << " " << nodes[edge.dest].capacity << " " << cDist << endl;
+                        solution[cDist + 1] = nodes[edge.dest].capacity;
+                    }
+                }
+                if(!maxHeap.increaseKey({edge.dest, cDist + 1}, nodes[edge.dest].capacity)){
+                    maxHeap.insert({edge.dest, cDist + 1}, nodes[edge.dest].capacity);
                 }
             }
         }
+    }
 
-        if(nodes[end].capacity == 0) continue;
-        vector<int> path = backtraceNode(start, end);
-        cout << "Capacity: " << nodes[end].capacity << "\t" << "Switches: " << path.size() - 1 << endl;
-        for(auto node : path) {
-            cout << node << " ";
-        }
-        cout << endl << endl;
+    int min = 0;
+    for(auto const &p : solution){
+        if(p.second > min)
+        {min = p.second;
+            cout << "Switches: " << p.first << " ";
+            cout << "Capacity: " << p.second << endl;}
     }
 }
-*/
+
 
 void Graph::allPathsCapacityAndStops(int start, int end) {
     vector<int> path;
@@ -307,7 +324,7 @@ void Graph::allPathsCapacityAndStopsUtil(int start, int u, int d, vector<int> &p
         for (int i = 0; i < nodes[u].adj.size();i++) {
             Edge e = nodes[u].adj[i];
             if (e.capacity == 0) continue;
-            if (!(nodes[e.dest].visited) && (e.capacity >= minFlow) && (path_index < maxStops)){
+            if (!(nodes[e.dest].visited) && (e.capacity >= minFlow) && (path_index < maxStops) && (e.capacity >= solution[path_index])){
                 path.push_back(i);
                 path_index++;
                 allPathsCapacityAndStopsUtil(start, e.dest, d, path, path_index, minFlow, maxStops, solution);

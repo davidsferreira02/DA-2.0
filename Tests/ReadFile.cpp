@@ -9,7 +9,8 @@ Graph* ReadFile::readViagem(string filename) {
     ifstream in;
     if (stoi(filename) < 10) filename = '0' + filename;
 
-    in.open("../Tests/Data/in" + filename + ".txt");
+    in.open("../Tests/Tests_B/in" + filename + "_b.txt");
+    //in.open("../Tests/Data/in" + filename + ".txt");
 
     if(!in.is_open()){
         cerr << "Unable to open file" << endl;

@@ -3,11 +3,13 @@
 
 #include "minHeap.h"
 #include "maxHeap.h"
+#include "maxHeap_pair.h"
 #include <vector>
 #include <list>
 #include <iostream>
 #include "Paths.h"
 #include <map>
+#include <utility>
 
 using namespace std;
 
