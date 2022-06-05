@@ -10,6 +10,7 @@ void Cenarios::cenario1_1(Graph* g, int start, int end) {
             cout << node << " ";
         }
     }
+    cout << endl;
 }
 
 void Cenarios::cenario1_2(Graph* g, int start, int end) {

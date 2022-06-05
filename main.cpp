@@ -1,4 +1,5 @@
 #include <iostream>
+#include <ctime>
 
 #include "Tests/ReadFile.h"
 #include "Tests/Cenarios.h"
@@ -9,24 +10,10 @@ using namespace std;
 #define  NMAX 10000
 
 int main() {
-    /*
-    cout << "\nFile " << to_string(5) << "\n";
-    Graph* g = ReadFile::readViagem(to_string(6));
-    g->pathCapacityAndStops(1, g->getSize());
-    //g->allPathsCapacityAndStops(1, g->getSize());
-    return 0;
-
-    for(int i = 11; i < 12; i++) {
-        cout << "\nFile " << to_string(i) << "\n";
-        Graph* g = ReadFile::readViagem(to_string(i));
-        Cenarios::cenario2_4(g);
-    }
-
-    return 0;
-*/
     string fileName, node, scenario;
     int start, end;
     char c;
+    clock_t t;
 
     cout << endl;
 
@@ -88,21 +75,39 @@ int main() {
 
 
         if (scenario == "1.1") {
+            t = clock();
             Cenarios::cenario1_1(g, start, end);
+            t = clock() - t;
+            cout << ((float) t)/CLOCKS_PER_SEC << " sec \n";
         } else if (scenario == "1.2") {
+            t = clock();
             Cenarios::cenario1_2(g, start, end);
+            t = clock() - t;
+            cout << ((float) t)/CLOCKS_PER_SEC << " sec \n";
         }
         else if (scenario == "2.1") {
+            t = clock();
             Cenarios::cenario2_1(g, start, end);
+            t = clock() - t;
+            cout << ((float) t)/CLOCKS_PER_SEC << " sec \n";
         }
         else if (scenario == "2.3") {
+            t = clock();
             Cenarios::cenario2_3(g, start, end);
+            t = clock() - t;
+            cout << ((float) t)/CLOCKS_PER_SEC << " sec \n";
         }
         else if (scenario == "2.4") {
+            t = clock();
             Cenarios::cenario2_4(g, start, end);
+            t = clock() - t;
+            cout << ((float) t)/CLOCKS_PER_SEC << " sec \n";
         }
         else if (scenario == "2.5") {
+            t = clock();
             Cenarios::cenario2_5(g, start, end);
+            t = clock() - t;
+            cout << ((float) t)/CLOCKS_PER_SEC << " sec \n";
         }
         else {
             cout << "Invalid scenario" << endl;

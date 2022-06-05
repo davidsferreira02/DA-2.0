@@ -252,7 +252,7 @@ void Graph::pathCapacityAndStops(int start, int end){
                 nodes[edge.dest].predNode = cNode;
                 if(edge.dest == end){
                     if(nodes[edge.dest].capacity > solution[cDist + 1]){
-                        cout << cNode << " " << nodes[edge.dest].capacity << " " << cDist << endl;
+                        //cout << cNode << " " << nodes[edge.dest].capacity << " " << cDist << endl;
                         solution[cDist + 1] = nodes[edge.dest].capacity;
                     }
                 }
