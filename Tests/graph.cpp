@@ -148,20 +148,20 @@ Graph* Graph::getFulkersonSolution() {
     return g;
 }
 
-Paths* Graph::getPossiblePaths() {
+Paths* Graph::getPossiblePaths(int start, int end) {
     Paths* paths = new Paths();
     vector<int> path, nodesPath;
     int flow;
-    while (!(path = bfs(1, n)).empty()) {
+    while (!(path = bfs(start, end)).empty()) {
         nodesPath = {};
-        flow = getMaxFlowForPath(path, 1);
+        flow = getMaxFlowForPath(path, start);
         int curNode = 1;
         for( auto e: path) {
             nodesPath.push_back(curNode);
             nodes[curNode].adj[e].capacity -= flow;
             curNode = nodes[curNode].adj[e].dest;
         }
-        nodesPath.push_back(n);
+        nodesPath.push_back(end);
         paths->addPath(nodesPath,flow);
     }
     return paths;
@@ -187,7 +187,11 @@ void Graph::printPaths(int start, int end) {
     cout << "Maximum capacity of the group: " << to_string(sumflow) << endl;
 }
 
-void Graph::FordFulkerson(int start, int end) {
+bool Graph::FordFulkerson(int start, int end) {
+    if (bfs(start, end).empty()) {
+        cout << "No possible path for chosen nodes" << endl;
+        return false;
+    }
     vector<int> path;
     int flow;
     while (!(path = bfs(start, end)).empty()) {
@@ -201,6 +205,7 @@ void Graph::FordFulkerson(int start, int end) {
             curNode = nodes[curNode].adj[e].dest;
         }
     }
+    return true;
 }
 
 void Graph::pathMaximumCapacity(int start, int end){
@@ -287,7 +292,31 @@ vector<int> Graph::resetEarliestStartValues() {
     return S;
 }
 
-int Graph::earliestStart() {
+bool Graph::hasEdge(int src, int dest) {
+    for (auto e: nodes[src].adj) {
+        if (e.dest == dest) return true;
+    }
+    return false;
+}
+
+void Graph::addEdgesToShorterGraph(Graph* g, int node) {
+    g->nodes[node].visited = true;
+    for (auto e: nodes[node].adj) {
+        if (e.initialCapacity != 0 && !g->hasEdge(node,e.dest)) {
+            g->addEdge(node,e.dest,e.capacity,e.duration);
+            g->addEdge(e.dest,node,0,e.duration);
+            if (!g->nodes[e.dest].visited) addEdgesToShorterGraph(g,e.dest);
+        }
+    }
+}
+
+Graph* Graph::getGraphForStart(int start) {
+    Graph* g = new Graph(n, true);
+    addEdgesToShorterGraph(g,start);
+    return g;
+}
+
+int Graph::earliestStart(int end) {
     vector<int> S = resetEarliestStartValues();
     int durMin = -1, vf = -1;
     while (!S.empty()) {
@@ -306,11 +335,11 @@ int Graph::earliestStart() {
             if (nodes[e.dest].GrauE == 0) S.push_back(e.dest);
         }
     }
-    return nodes[n].earliestStart;
+    return nodes[end].earliestStart;
 }
 
 vector<int> Graph::resetLatestFinishValues() {
-    earliestStart();
+    earliestStart(n);
 
     for (int i=1; i<=n; i++) {
         nodes.at(i).latestFinish=nodes.at(n).earliestStart;
